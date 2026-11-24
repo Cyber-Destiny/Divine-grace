@@ -2,6 +2,10 @@
 
 A fast, static hotel website (plain HTML, CSS and JavaScript, no build step) built around the hotel's own photos.
 
+**Live site:** https://divine-grace-blue.vercel.app
+
+The Vercel project `divine-grace` is connected to this repository, so every push redeploys the site automatically.
+
 ## What's on the site
 
 - **Hero** with drifting photo columns and a quick booking bar
