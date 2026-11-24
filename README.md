@@ -5,13 +5,13 @@ A fast, static hotel website (plain HTML, CSS and JavaScript, no build step) bui
 ## What's on the site
 
 - **Hero** with drifting photo columns and a quick booking bar
-- **Rooms & Suites**: Standard Room, Executive Room, Deluxe Studio and Grace Suite. Each has a hover slideshow and a full photo viewer with amenities and price
+- **Suites**: Standard, Executive and Presidential. Each has a hover slideshow and a full photo viewer with amenities and price
 - **Set the Mood**: an interactive viewer that shows the same room lit in different LED colours
-- **The Grand Hall** for events, with an event enquiry form
-- **Restaurant & Café**, **Velvet Lounge** and **Pearl Lounge**
-- **Safety & access**: card-key locks, video intercom, CCTV, steel doors
+- **Event Hall**, with an enquiry form for weddings, conferences and other events
+- **Restaurant**, **Velvet Lounge** and **Pearl Lounge**
+- **Safety**: key-card locks, video intercom, CCTV, steel doors
 - **Our people**, a filterable **Gallery** with a lightbox, and **Contact**
-- Bookings, event enquiries and messages are sent to the hotel on **WhatsApp** (or by email), already filled in with dates, room, guests and an estimated total. No backend is needed.
+- Bookings, event enquiries and messages are sent to the hotel on **WhatsApp** (or by email), already filled in with dates, suite, guests and an estimated total. No backend is needed.
 
 ## Edit the hotel's details
 
@@ -23,12 +23,12 @@ Everything you'll want to change is in **`js/config.js`**:
 | `whatsapp` | WhatsApp number in international format, digits only (e.g. `2348031234567`) |
 | `email`, `address` | Contact details |
 | `mapQuery` | Fill in (e.g. `"Divine Grace Hotel, Ibadan"`) to show a live Google map |
-| `social` | Instagram / Facebook / TikTok links |
-| `ROOMS[].price` | Nightly rate for each room type |
-| `ROOMS[]` | Room names, descriptions, amenities and which photos to show |
+| `social` | Instagram / Facebook / TikTok links (icons stay hidden until you add a link) |
+| `ROOMS[].price` | Nightly rate for each suite |
+| `ROOMS[]` | Suite names, descriptions, amenities and which photos to show |
 | `GALLERY` | Photos and captions in the gallery |
 
-> The phone, WhatsApp, email, address and room prices are **placeholders**. Replace them before going live.
+> The phone, WhatsApp, email, address and suite prices are **placeholders**. Replace them before going live.
 
 ## Preview locally
 

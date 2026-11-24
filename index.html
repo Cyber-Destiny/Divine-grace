@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Divine Grace Hotel | Rooms, Suites, Events & Dining</title>
-  <meta name="description" content="Divine Grace Hotel: elegant rooms and suites with mood lighting, a grand event hall, restaurant and café, private lounges and 24/7 security with card-key access.">
+  <title>Divine Grace Hotel | Suites, Event Hall & Restaurant</title>
+  <meta name="description" content="Divine Grace Hotel has Standard, Executive and Presidential suites, an event hall for weddings and conferences, a restaurant and two lounges, all in one secure compound. Book on WhatsApp.">
   <meta name="theme-color" content="#0b0c16">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Divine Grace Hotel">
-  <meta property="og:description" content="Rest in grace. Celebrate in style. Rooms, suites, a grand event hall, dining and lounges.">
+  <meta property="og:description" content="Standard, Executive and Presidential suites, an event hall, a restaurant and two lounges in one secure compound.">
   <meta property="og:image" content="assets/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -25,7 +25,7 @@
     "@context": "https://schema.org",
     "@type": "Hotel",
     "name": "Divine Grace Hotel",
-    "description": "Rooms and suites, a grand event hall, restaurant and café, private lounges and 24/7 security.",
+    "description": "Standard, Executive and Presidential suites, an event hall, a restaurant and two lounges in one secure compound.",
     "image": "assets/og-image.jpg",
     "amenityFeature": [
       {"@type": "LocationFeatureSpecification", "name": "Event hall", "value": true},
@@ -36,7 +36,7 @@
   }
   </script>
 </head>
-<body>
+<body id="top">
 
 <!-- ======================= ICON SPRITE ======================= -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -53,17 +53,16 @@
     <symbol id="i-hall" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M4 20V9l8-5 8 5v11"/><path d="M8 20v-6M12 20v-6M16 20v-6M4 11h16"/></g></symbol>
     <symbol id="i-dine" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M16 21V3c-2 1.5-3 4-3 7h3"/></g></symbol>
     <symbol id="i-glass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l-1 6a4 4 0 0 1-8 0L7 3zM12 13v7M8.5 20h7"/></g></symbol>
-    <symbol id="i-bed" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V7M3 14h18v4M21 14v-2.5A2.5 2.5 0 0 0 18.5 9H11v5"/><circle cx="7" cy="11" r="1.6"/></g></symbol>
     <symbol id="i-bulb" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></g></symbol>
-    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></symbol>
+    <symbol id="i-snow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9.5 4.5L12 7l2.5-2.5M9.5 19.5L12 17l2.5 2.5"/></g></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.700-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.300-2.900c-.3-.4.2-.4.7-1.300.1-.2 0-.3 0-.4l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.200 5.200 5.200 0 0 0 1.100 2.800 11.900 11.900 0 0 0 4.600 4c1.700.7 2.300.8 3.200.7.5-.1 1.500-.6 1.700-1.200.2-.6.2-1.100.2-1.200-.1-.1-.3-.2-.5-.3z"/></symbol>
     <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h3.5l1.5 4-2 1.5a11 11 0 0 0 6.5 6.5l1.5-2 4 1.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></g></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
     <symbol id="i-instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></g></symbol>
     <symbol id="i-facebook" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21v-7.5H16l.4-3H13.5V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4A21 21 0 0 0 14.3 4C12 4 10.5 5.4 10.5 8v2.5H8v3h2.5V21h3z"/></symbol>
-    <symbol id="i-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-1.8-2.5V9.7a5.7 5.7 0 1 0 4.9 5.7V9.1a7.3 7.3 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.2-1.6z"/></symbol>
-    <symbol id="i-sparkle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></g></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-1.8-2.5V9.7a5.7 5.7 0 1 0 4.9 5.700V9.1a7.3 7.3 0 0 0 4.3 1.400V7.4a4.3 4.3 0 0 1-3.200-1.600z"/></symbol>
     <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 14l6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="arch" viewBox="0 0 40 48"><path d="M4 46V20a16 16 0 0 1 32 0v26" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 46V22a9 9 0 0 1 18 0v24" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/></symbol>
   </defs>
@@ -72,48 +71,48 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ======================= HEADER ======================= -->
-<header class="site-header" id="top">
+<header class="site-header">
   <div class="container header-inner">
-    <a href="#top" class="brand" aria-label="Divine Grace Hotel, home">
-      <svg class="brand-mark"><use href="#arch"/></svg>
+    <a href="#top" class="brand" aria-label="Divine Grace Hotel, back to top">
+      <svg class="brand-mark" aria-hidden="true"><use href="#arch"/></svg>
       <span class="brand-text">
         <span class="brand-name" data-bind="name">Divine Grace</span>
-        <span class="brand-sub">Hotel &amp; Suites</span>
+        <span class="brand-sub">Hotel</span>
       </span>
     </a>
 
     <nav class="main-nav" aria-label="Main">
-      <a href="#rooms">Rooms</a>
-      <a href="#mood">Mood</a>
-      <a href="#events">Events</a>
-      <a href="#dining">Dining</a>
+      <a href="#rooms">Suites</a>
+      <a href="#mood">Lighting</a>
+      <a href="#events">Event Hall</a>
+      <a href="#dining">Restaurant</a>
       <a href="#lounges">Lounges</a>
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
 
     <div class="header-actions">
-      <a class="header-phone" data-link="tel" href="#"><svg><use href="#i-phone"/></svg><span data-bind="phoneDisplay"></span></a>
-      <button class="btn btn-gold btn-sm" data-open-booking>Book a stay</button>
-      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+      <a class="header-phone" data-link="tel" href="#contact"><svg aria-hidden="true"><use href="#i-phone"/></svg><span data-bind="phoneDisplay"></span></a>
+      <button class="btn btn-gold btn-sm" type="button" data-open-booking>Book a suite</button>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <div class="mobile-menu" id="mobile-menu" hidden>
   <nav aria-label="Mobile">
-    <a href="#rooms">Rooms &amp; Suites</a>
-    <a href="#mood">Set the Mood</a>
-    <a href="#events">The Grand Hall</a>
-    <a href="#dining">Restaurant &amp; Café</a>
+    <a href="#rooms">Suites</a>
+    <a href="#mood">Mood lighting</a>
+    <a href="#events">Event Hall</a>
+    <a href="#dining">Restaurant</a>
     <a href="#lounges">Lounges</a>
     <a href="#safety">Safety</a>
     <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
   </nav>
   <div class="mobile-menu-foot">
-    <button class="btn btn-gold" data-open-booking>Book a stay</button>
-    <a class="btn btn-ghost" data-link="wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-whatsapp"/></svg>WhatsApp us</a>
+    <button class="btn btn-gold" type="button" data-open-booking>Book a suite</button>
+    <a class="btn btn-ghost" data-link="wa" href="#contact" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>Message us on WhatsApp</a>
   </div>
 </div>
 
@@ -130,12 +129,12 @@
 
   <div class="container hero-inner">
     <div class="hero-copy">
-      <p class="eyebrow hero-anim" style="--d:.1s"><span class="eyebrow-line"></span><span data-bind="descriptor">Hotel · Suites · Events</span></p>
+      <p class="eyebrow hero-anim" style="--d:.1s"><span class="eyebrow-line"></span>Hotel · Event Hall · Restaurant</p>
       <h1 class="hero-title">
-        <span class="line"><span class="hero-anim" style="--d:.2s">Rest in grace.</span></span>
-        <span class="line"><em class="hero-anim" style="--d:.35s">Celebrate</em> <span class="hero-anim" style="--d:.45s">in style.</span></span>
+        <span class="line"><span class="hero-anim" style="--d:.2s">Welcome to</span></span>
+        <span class="line"><em class="hero-anim" style="--d:.35s">Divine Grace.</em></span>
       </h1>
-      <p class="hero-lead hero-anim" style="--d:.6s">Glowing rooms and suites, a grand hall for your biggest days, and a team that looks after you around the clock.</p>
+      <p class="hero-lead hero-anim" style="--d:.6s">Comfortable suites, a big hall for weddings and events, a restaurant and two lounges, all inside one secure compound.</p>
 
       <form class="booking-bar hero-anim" style="--d:.75s" id="quick-book" novalidate>
         <label class="bb-field">
@@ -156,13 +155,13 @@
             <option>Family / group</option>
           </select>
         </label>
-        <button class="btn btn-gold bb-submit" type="submit">Check availability <svg><use href="#i-arrow"/></svg></button>
+        <button class="btn btn-gold bb-submit" type="submit">Check availability <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
       </form>
 
       <div class="hero-meta hero-anim" style="--d:.9s">
-        <span><svg><use href="#i-key"/></svg>Card-key rooms</span>
-        <span><svg><use href="#i-shield"/></svg>24/7 security</span>
-        <span><svg><use href="#i-bulb"/></svg>Mood lighting</span>
+        <span><svg aria-hidden="true"><use href="#i-key"/></svg>Key-card doors</span>
+        <span><svg aria-hidden="true"><use href="#i-shield"/></svg>CCTV &amp; security</span>
+        <span><svg aria-hidden="true"><use href="#i-snow"/></svg>Air-conditioned</span>
       </div>
     </div>
   </div>
@@ -173,8 +172,8 @@
 <!-- ======================= MARQUEE ======================= -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Rooms &amp; Suites</span><i>✦</i><span>The Grand Hall</span><i>✦</i><span>Restaurant &amp; Café</span><i>✦</i><span>Velvet Lounge</span><i>✦</i><span>Pearl Lounge</span><i>✦</i><span>Card-key Access</span><i>✦</i><span>CCTV &amp; Secured Perimeter</span><i>✦</i><span>Massage-jet Showers</span><i>✦</i>
-    <span>Rooms &amp; Suites</span><i>✦</i><span>The Grand Hall</span><i>✦</i><span>Restaurant &amp; Café</span><i>✦</i><span>Velvet Lounge</span><i>✦</i><span>Pearl Lounge</span><i>✦</i><span>Card-key Access</span><i>✦</i><span>CCTV &amp; Secured Perimeter</span><i>✦</i><span>Massage-jet Showers</span><i>✦</i>
+    <span>Standard Suite</span><i>✦</i><span>Executive Suite</span><i>✦</i><span>Presidential Suite</span><i>✦</i><span>Event Hall</span><i>✦</i><span>Restaurant</span><i>✦</i><span>Velvet Lounge</span><i>✦</i><span>Pearl Lounge</span><i>✦</i><span>24-hour security</span><i>✦</i>
+    <span>Standard Suite</span><i>✦</i><span>Executive Suite</span><i>✦</i><span>Presidential Suite</span><i>✦</i><span>Event Hall</span><i>✦</i><span>Restaurant</span><i>✦</i><span>Velvet Lounge</span><i>✦</i><span>Pearl Lounge</span><i>✦</i><span>24-hour security</span><i>✦</i>
   </div>
 </div>
 
@@ -183,50 +182,50 @@
   <div class="container welcome-grid">
     <div class="welcome-media reveal">
       <figure class="arch arch-lg">
-        <img src="assets/img/executive-1.webp" alt="Executive Room with king bed, mirrored wardrobe and armchair" width="810" height="1080" loading="lazy">
+        <img src="assets/img/executive-1.webp" alt="Presidential Suite bedroom with king-size bed, wardrobe and armchair" width="810" height="1080" loading="lazy">
       </figure>
       <figure class="arch arch-sm">
-        <img src="assets/img/door-301-sm.webp" alt="Room 301 door with card-key lock" width="480" height="640" loading="lazy">
+        <img src="assets/img/door-301-sm.webp" alt="Door to Room 301 with a key-card lock" width="480" height="640" loading="lazy">
       </figure>
       <div class="badge-spin" aria-hidden="true">
         <svg viewBox="0 0 120 120">
           <defs><path id="circle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
-          <text><textPath href="#circle" textLength="285" lengthAdjust="spacing">DIVINE GRACE · HOTEL &amp; SUITES · </textPath></text>
+          <text><textPath href="#circle" textLength="285" lengthAdjust="spacing">DIVINE GRACE HOTEL · DIVINE GRACE HOTEL · </textPath></text>
         </svg>
         <svg class="badge-mark"><use href="#arch"/></svg>
       </div>
     </div>
 
     <div class="welcome-copy">
-      <p class="eyebrow reveal"><span class="eyebrow-line"></span>Welcome</p>
-      <h2 class="display reveal">A house of quiet comfort that <em>comes alive</em> after dark.</h2>
-      <p class="reveal">At Divine Grace, every detail is chosen for how it makes you feel. Polished marble floors, tufted king-size beds and soft ceiling light that shifts from sapphire to ruby at the touch of a switch.</p>
-      <p class="reveal">Stay the night, host a wedding in the Grand Hall, meet friends in the lounge or simply enjoy a quiet meal. Our uniformed team is here day and night to make it effortless.</p>
+      <p class="eyebrow reveal"><span class="eyebrow-line"></span>About us</p>
+      <h2 class="display reveal">Come in, settle down. <em>We'll take it from here.</em></h2>
+      <p class="reveal">Divine Grace is a hotel, event centre and restaurant in one compound. Our suites have king-size beds, cold air-conditioning, shower cabins and ceiling lights you can switch to any colour you like.</p>
+      <p class="reveal">Here for one night or a whole week? In town for a wedding at the hall? Or just after a quiet meal? Our staff are on duty day and night, so there's always someone to help.</p>
 
       <ul class="pillars">
-        <li class="reveal"><svg><use href="#i-key"/></svg><div><strong>Smart access</strong><span>Card-key locks and video intercoms in every room</span></div></li>
-        <li class="reveal"><svg><use href="#i-shield"/></svg><div><strong>Safe &amp; secure</strong><span>CCTV and a secured, fenced perimeter</span></div></li>
-        <li class="reveal"><svg><use href="#i-hall"/></svg><div><strong>Grand Hall</strong><span>A stage, lighting rig and gallery for big days</span></div></li>
-        <li class="reveal"><svg><use href="#i-glass"/></svg><div><strong>Dine &amp; unwind</strong><span>Restaurant, café and two distinct lounges</span></div></li>
+        <li class="reveal"><svg aria-hidden="true"><use href="#i-key"/></svg><div><strong>Key-card doors</strong><span>Only your card opens your door, and there's a video intercom inside.</span></div></li>
+        <li class="reveal"><svg aria-hidden="true"><use href="#i-shield"/></svg><div><strong>Secure compound</strong><span>Fenced and gated, with cameras in the corridors.</span></div></li>
+        <li class="reveal"><svg aria-hidden="true"><use href="#i-hall"/></svg><div><strong>Event hall</strong><span>Stage, lighting rig and an upper gallery for your guests.</span></div></li>
+        <li class="reveal"><svg aria-hidden="true"><use href="#i-glass"/></svg><div><strong>Food &amp; drinks</strong><span>A restaurant and two lounges, right downstairs.</span></div></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ======================= ROOMS ======================= -->
+<!-- ======================= SUITES ======================= -->
 <section class="section dark rooms" id="rooms">
   <div class="container">
     <div class="section-head">
       <div>
-        <p class="eyebrow reveal"><span class="eyebrow-line"></span>Accommodation</p>
-        <h2 class="display reveal">Rooms &amp; <em>Suites</em></h2>
+        <p class="eyebrow reveal"><span class="eyebrow-line"></span>Stay with us</p>
+        <h2 class="display reveal">Our <em>suites</em></h2>
       </div>
-      <p class="section-intro reveal">Four ways to stay, from a beautifully finished standard room to a suite with its own living room. Hover a card to look around; tap to see every detail.</p>
+      <p class="section-intro reveal">Three suite types to choose from. Every one has a king-size bed, air-conditioning, its own shower and a key-card door. Tap a suite to see all the photos.</p>
     </div>
 
     <div class="room-grid" id="room-grid"></div>
 
-    <p class="rates-note reveal">Rates are per night. Contact us for long-stay, corporate and event-block rates.</p>
+    <p class="rates-note reveal">Prices are per night. Ask us about weekly stays, company rates and blocks of rooms for events.</p>
   </div>
 </section>
 
@@ -235,15 +234,15 @@
   <div class="mood-glow" aria-hidden="true"></div>
   <div class="container mood-grid">
     <div class="mood-copy">
-      <p class="eyebrow reveal"><span class="eyebrow-line"></span>Signature experience</p>
-      <h2 class="display reveal">Set the <em>mood.</em></h2>
-      <p class="reveal">Our rooms and lounges are lit with colour-changing ceiling coves. Choose a space, then pick a colour to see the same room transform.</p>
+      <p class="eyebrow reveal"><span class="eyebrow-line"></span>Mood lighting</p>
+      <h2 class="display reveal">Pick a <em>colour.</em></h2>
+      <p class="reveal">The ceilings in our suites and lounges are lined with colour LED lights. Choose a room, then a colour, and see how it looks.</p>
 
-      <div class="mood-spaces reveal" role="tablist" aria-label="Choose a space" id="mood-spaces"></div>
+      <div class="mood-spaces reveal" role="group" aria-label="Choose a room" id="mood-spaces"></div>
 
-      <div class="mood-swatches reveal" id="mood-swatches" aria-label="Choose a colour"></div>
+      <div class="mood-swatches reveal" role="group" id="mood-swatches" aria-label="Choose a colour"></div>
 
-      <p class="mood-now reveal" aria-live="polite"><span class="mood-dot"></span><span id="mood-label">Deluxe Studio · Sapphire</span></p>
+      <p class="mood-now reveal" aria-live="polite"><span class="mood-dot"></span><span id="mood-label">Executive Suite · Blue</span></p>
     </div>
 
     <div class="mood-stage reveal">
@@ -253,61 +252,61 @@
   </div>
 </section>
 
-<!-- ======================= EVENTS ======================= -->
+<!-- ======================= EVENT HALL ======================= -->
 <section class="section light events" id="events">
   <div class="container">
     <div class="section-head">
       <div>
-        <p class="eyebrow reveal"><span class="eyebrow-line"></span>Celebrations &amp; Conferences</p>
-        <h2 class="display reveal">The Grand <em>Hall</em></h2>
+        <p class="eyebrow reveal"><span class="eyebrow-line"></span>Events</p>
+        <h2 class="display reveal">The Event <em>Hall</em></h2>
       </div>
-      <p class="section-intro reveal">A bright, double-height hall made for weddings, conferences, church programmes, concerts and milestone birthdays. Natural light by day, a full lighting rig by night.</p>
+      <p class="section-intro reveal">A large, bright hall with a raised stage, an overhead lighting rig and a gallery level above the main floor. We host weddings, birthdays, conferences, church programmes and more.</p>
     </div>
 
     <div class="bento">
-      <figure class="bento-a reveal" data-lightbox="hall-wide"><img src="assets/img/hall-wide.webp" alt="The Grand Hall with lighting truss, marble floors and gallery" width="810" height="1080" loading="lazy"><figcaption>Main floor &amp; lighting truss</figcaption></figure>
-      <figure class="bento-b reveal" data-lightbox="hall-stage"><img src="assets/img/hall-stage.webp" alt="Raised stage with dark stone feature wall" width="810" height="1080" loading="lazy"><figcaption>Raised stage</figcaption></figure>
-      <figure class="bento-c reveal" data-lightbox="hall-side"><img src="assets/img/hall-side.webp" alt="Hall side view with mezzanine gallery and banquet chairs" width="810" height="1080" loading="lazy"><figcaption>Mezzanine gallery</figcaption></figure>
+      <figure class="bento-a reveal" data-lightbox="hall-wide"><img src="assets/img/hall-wide.webp" alt="The event hall with lighting rig, marble floor and upper gallery" width="810" height="1080" loading="lazy"><figcaption>Main floor</figcaption></figure>
+      <figure class="bento-b reveal" data-lightbox="hall-stage"><img src="assets/img/hall-stage.webp" alt="Raised stage with a dark stone wall behind it" width="810" height="1080" loading="lazy"><figcaption>The stage</figcaption></figure>
+      <figure class="bento-c reveal" data-lightbox="hall-side"><img src="assets/img/hall-side.webp" alt="Side view of the hall showing the upper gallery and stacked chairs" width="810" height="1080" loading="lazy"><figcaption>Upper gallery</figcaption></figure>
       <div class="bento-d reveal">
         <ul class="feature-list">
-          <li><svg><use href="#i-check"/></svg>Raised stage with stone feature wall</li>
-          <li><svg><use href="#i-check"/></svg>Overhead lighting truss &amp; spotlights</li>
-          <li><svg><use href="#i-check"/></svg>Mezzanine gallery overlooking the floor</li>
-          <li><svg><use href="#i-check"/></svg>Polished marble floors</li>
-          <li><svg><use href="#i-check"/></svg>Banquet chairs &amp; tables available</li>
-          <li><svg><use href="#i-check"/></svg>Air-conditioned throughout</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Raised stage with a stone feature wall</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Lighting rig with spotlights</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Upper gallery overlooking the floor</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Polished marble floor</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Chairs and tables available</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Air-conditioning</li>
         </ul>
         <div class="chips">
-          <span>Weddings</span><span>Conferences</span><span>Birthdays</span><span>Church programmes</span><span>Concerts</span><span>Product launches</span>
+          <span>Weddings</span><span>Birthdays</span><span>Conferences</span><span>Church programmes</span><span>Concerts</span><span>Product launches</span>
         </div>
-        <button class="btn btn-dark" data-open-event>Plan your event <svg><use href="#i-arrow"/></svg></button>
+        <button class="btn btn-dark" type="button" data-open-event>Ask about a date <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================= DINING ======================= -->
+<!-- ======================= RESTAURANT ======================= -->
 <section class="section dark dining" id="dining">
   <div class="container dining-grid">
     <div class="dining-copy">
-      <p class="eyebrow reveal"><span class="eyebrow-line"></span>Restaurant &amp; Café</p>
-      <h2 class="display reveal">Good food, <em>golden light.</em></h2>
-      <p class="reveal">Our restaurant and café is a calm, airy room wrapped in textured stone walls, with tall windows on one side and a warm, glowing ceiling cove under a crystal chandelier.</p>
-      <p class="reveal">Drop in for breakfast before a meeting, a light lunch, chilled drinks from the cooler or a relaxed dinner. Hotel guests, event guests and visitors are all welcome.</p>
+      <p class="eyebrow reveal"><span class="eyebrow-line"></span>Restaurant</p>
+      <h2 class="display reveal">Eat in, take your <em>time.</em></h2>
+      <p class="reveal">Our restaurant is a bright dining room with big windows, a crystal chandelier and plenty of tables.</p>
+      <p class="reveal">Come down for breakfast, grab a cold drink from the chiller or sit down for a proper meal in the evening. It's open to hotel guests, event guests and visitors.</p>
       <div class="dining-stats reveal">
-        <div><svg><use href="#i-dine"/></svg><span>All-day dining</span></div>
-        <div><svg><use href="#i-glass"/></svg><span>Chilled drinks</span></div>
-        <div><svg><use href="#i-sparkle"/></svg><span>Air-conditioned</span></div>
+        <div><svg aria-hidden="true"><use href="#i-dine"/></svg><span>Dine in</span></div>
+        <div><svg aria-hidden="true"><use href="#i-glass"/></svg><span>Cold drinks</span></div>
+        <div><svg aria-hidden="true"><use href="#i-snow"/></svg><span>Air-conditioned</span></div>
       </div>
-      <div class="drag-hint reveal"><svg><use href="#i-left"/></svg><span>Drag to explore</span><svg><use href="#i-right"/></svg></div>
+      <div class="drag-hint reveal" aria-hidden="true"><svg><use href="#i-left"/></svg><span>Drag to see more</span><svg><use href="#i-right"/></svg></div>
     </div>
-    <div class="dining-strip reveal" id="dining-strip" tabindex="0" aria-label="Restaurant photos, scroll horizontally">
-      <figure data-lightbox="dining-2"><img src="assets/img/dining-2.webp" alt="Restaurant with black dining chairs, chandelier and golden ceiling light" width="960" height="1280" loading="lazy"></figure>
-      <figure data-lightbox="dining-6"><img src="assets/img/dining-6.webp" alt="Café tables beside tall windows" width="960" height="1280" loading="lazy"></figure>
-      <figure data-lightbox="dining-8"><img src="assets/img/dining-8.webp" alt="Restaurant interior with chandelier" width="960" height="1280" loading="lazy"></figure>
+    <div class="dining-strip reveal" id="dining-strip" tabindex="0" aria-label="Restaurant photos. Scroll sideways to see more.">
+      <figure data-lightbox="dining-2"><img src="assets/img/dining-2.webp" alt="Restaurant with black chairs, a chandelier and warm ceiling light" width="960" height="1280" loading="lazy"></figure>
+      <figure data-lightbox="dining-6"><img src="assets/img/dining-6.webp" alt="Tables beside the tall restaurant windows" width="960" height="1280" loading="lazy"></figure>
+      <figure data-lightbox="dining-8"><img src="assets/img/dining-8.webp" alt="Restaurant seating under the chandelier" width="960" height="1280" loading="lazy"></figure>
       <figure data-lightbox="dining-1"><img src="assets/img/dining-1.webp" alt="Round tables with slatted black chairs" width="960" height="1280" loading="lazy"></figure>
-      <figure data-lightbox="dining-3"><img src="assets/img/dining-3.webp" alt="Restaurant with drinks cooler and TV" width="960" height="1280" loading="lazy"></figure>
-      <figure data-lightbox="dining-7"><img src="assets/img/dining-7.webp" alt="Dining room seating" width="960" height="1280" loading="lazy"></figure>
+      <figure data-lightbox="dining-3"><img src="assets/img/dining-3.webp" alt="Restaurant with drinks chiller and TV" width="960" height="1280" loading="lazy"></figure>
+      <figure data-lightbox="dining-7"><img src="assets/img/dining-7.webp" alt="Restaurant dining area" width="960" height="1280" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -316,34 +315,34 @@
 <section class="section darker lounges" id="lounges">
   <div class="container">
     <div class="section-head center">
-      <p class="eyebrow reveal"><span class="eyebrow-line"></span>After hours<span class="eyebrow-line"></span></p>
+      <p class="eyebrow reveal"><span class="eyebrow-line"></span>Lounges<span class="eyebrow-line"></span></p>
       <h2 class="display reveal">Two lounges, <em>two moods</em></h2>
     </div>
 
     <div class="lounge-grid">
       <article class="lounge-card reveal" style="--accent:#ff3b5c">
         <div class="lounge-media">
-          <img src="assets/img/lounge-violet.webp" alt="Velvet Lounge with high-back booths and quilted walls in purple light" width="960" height="1280" loading="lazy">
+          <img src="assets/img/lounge-violet.webp" alt="Velvet Lounge with tall padded booths and quilted walls in purple light" width="960" height="1280" loading="lazy">
           <img class="alt" src="assets/img/lounge-deep-blue.webp" alt="" width="810" height="1080" loading="lazy">
         </div>
         <div class="lounge-body">
           <span class="lounge-num">01</span>
           <h3>Velvet Lounge</h3>
-          <p>High-back booths in velvet and leather, quilted wall panels and a glowing ceiling. Intimate, private and made for long conversations and late nights.</p>
-          <span class="lounge-tag">Private booths · Mood lighting</span>
+          <p>Tall padded booths, quilted walls and low, coloured lighting. Quiet and private, good for long conversations.</p>
+          <span class="lounge-tag">Private booths · Colour lighting</span>
         </div>
       </article>
 
       <article class="lounge-card reveal" style="--accent:#1fd1a5">
         <div class="lounge-media">
-          <img src="assets/img/pearl-blue.webp" alt="Pearl Lounge with white wicker seats, red cushions and a classical column" width="960" height="1280" loading="lazy">
+          <img src="assets/img/pearl-blue.webp" alt="Pearl Lounge with white wicker chairs, red cushions and a column" width="960" height="1280" loading="lazy">
           <img class="alt" src="assets/img/pearl-green.webp" alt="" width="960" height="1280" loading="lazy">
         </div>
         <div class="lounge-body">
           <span class="lounge-num">02</span>
           <h3>Pearl Lounge</h3>
-          <p>White woven pod chairs with crimson cushions, glass-top tables and a sculpted column, set against stone-textured walls. Relaxed, social and perfect for watching the game.</p>
-          <span class="lounge-tag">Social seating · TV · Air-conditioned</span>
+          <p>White wicker chairs with red cushions, glass tables and a big TV on the wall. More relaxed and more social. This is where to watch the match with friends.</p>
+          <span class="lounge-tag">Wicker seating · TV · Air-conditioned</span>
         </div>
       </article>
     </div>
@@ -355,28 +354,28 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <p class="eyebrow reveal"><span class="eyebrow-line"></span>Safety &amp; access</p>
-        <h2 class="display reveal">Peace of mind, <em>built in.</em></h2>
+        <p class="eyebrow reveal"><span class="eyebrow-line"></span>Safety</p>
+        <h2 class="display reveal">Safe from the gate <em>to your door.</em></h2>
       </div>
-      <p class="section-intro reveal">Sleep soundly. Every room and corridor is designed around your security, so you can focus on rest, work or celebration.</p>
+      <p class="section-intro reveal">The compound is fenced and gated, cameras cover the corridors, and every suite has a key-card lock and a video intercom.</p>
     </div>
 
     <div class="safety-grid">
       <article class="safety-card reveal">
-        <figure><img src="assets/img/sec-card-sm.webp" alt="Guest tapping a key card on a smart door lock" width="480" height="640" loading="lazy"></figure>
-        <div><svg><use href="#i-key"/></svg><h3>Card-key locks</h3><p>Every room opens only with your personal key card.</p></div>
+        <figure><img src="assets/img/sec-card-sm.webp" alt="A guest opening a door with a key card" width="480" height="640" loading="lazy"></figure>
+        <div><svg aria-hidden="true"><use href="#i-key"/></svg><h3>Key-card locks</h3><p>Only your card opens your door.</p></div>
       </article>
       <article class="safety-card reveal">
-        <figure><img src="assets/img/sec-intercom-sm.webp" alt="In-room video intercom screen showing a visitor" width="480" height="640" loading="lazy"></figure>
-        <div><svg><use href="#i-intercom"/></svg><h3>Video intercom</h3><p>See who is at your door before you open it.</p></div>
+        <figure><img src="assets/img/sec-intercom-sm.webp" alt="Video intercom screen inside a suite showing a visitor" width="480" height="640" loading="lazy"></figure>
+        <div><svg aria-hidden="true"><use href="#i-intercom"/></svg><h3>Video intercom</h3><p>See who's knocking before you open up.</p></div>
       </article>
       <article class="safety-card reveal">
-        <figure><img src="assets/img/sec-cctv-sm.webp" alt="Dome CCTV camera in a corridor" width="480" height="640" loading="lazy"></figure>
-        <div><svg><use href="#i-cctv"/></svg><h3>CCTV coverage</h3><p>Cameras watch over corridors and common areas.</p></div>
+        <figure><img src="assets/img/sec-cctv-sm.webp" alt="CCTV dome camera in a corridor" width="480" height="640" loading="lazy"></figure>
+        <div><svg aria-hidden="true"><use href="#i-cctv"/></svg><h3>CCTV cameras</h3><p>Cameras cover the corridors and shared areas.</p></div>
       </article>
       <article class="safety-card reveal">
-        <figure><img src="assets/img/door-301-sm.webp" alt="Solid steel-finish door to Room 301" width="480" height="640" loading="lazy"></figure>
-        <div><svg><use href="#i-shield"/></svg><h3>Solid steel doors</h3><p>Heavy, embossed steel-finish doors on every room.</p></div>
+        <figure><img src="assets/img/door-301-sm.webp" alt="Solid steel door to Room 301" width="480" height="640" loading="lazy"></figure>
+        <div><svg aria-hidden="true"><use href="#i-shield"/></svg><h3>Steel doors</h3><p>Every suite has a solid steel door.</p></div>
       </article>
     </div>
   </div>
@@ -386,16 +385,16 @@
 <section class="section dark team" id="team">
   <div class="container team-grid">
     <figure class="team-photo reveal">
-      <img src="assets/img/team-2.webp" alt="The Divine Grace team in uniform" width="810" height="1080" loading="lazy">
+      <img src="assets/img/team-2.webp" alt="The Divine Grace Hotel team in white and blue uniforms" width="810" height="1080" loading="lazy">
     </figure>
     <div class="team-copy">
-      <p class="eyebrow reveal"><span class="eyebrow-line"></span>Our people</p>
-      <blockquote class="display reveal">“You are not just a booking. <em>You are our guest.</em>”</blockquote>
-      <p class="reveal">From the front desk to housekeeping and events, our uniformed team takes pride in the small things: a warm welcome, a spotless room and a quick answer whenever you need one.</p>
+      <p class="eyebrow reveal"><span class="eyebrow-line"></span>Our team</p>
+      <h2 class="display reveal">The people who'll <em>look after you.</em></h2>
+      <p class="reveal">You'll know us by the white and blue uniforms. Front desk, housekeeping or the events team, if you need something, just ask whoever you see first.</p>
       <div class="team-thumbs reveal">
         <img src="assets/img/team-ladies-sm.webp" alt="Members of the Divine Grace team" width="480" height="640" loading="lazy">
-        <img src="assets/img/team-managers-sm.webp" alt="Divine Grace managers" width="480" height="640" loading="lazy">
-        <img src="assets/img/team-1-sm.webp" alt="Divine Grace staff" width="480" height="640" loading="lazy">
+        <img src="assets/img/team-managers-sm.webp" alt="Two Divine Grace managers" width="480" height="640" loading="lazy">
+        <img src="assets/img/team-1-sm.webp" alt="The Divine Grace team outside the hotel" width="480" height="640" loading="lazy">
       </div>
     </div>
   </div>
@@ -406,17 +405,16 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <p class="eyebrow reveal"><span class="eyebrow-line"></span>Take a look around</p>
-        <h2 class="display reveal">The <em>Gallery</em></h2>
+        <p class="eyebrow reveal"><span class="eyebrow-line"></span>Have a look around</p>
+        <h2 class="display reveal">Photo <em>gallery</em></h2>
       </div>
-      <div class="filters reveal" role="tablist" aria-label="Filter gallery" id="gallery-filters">
-        <button class="is-active" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button data-filter="rooms" role="tab" aria-selected="false">Rooms</button>
-        <button data-filter="suites" role="tab" aria-selected="false">Suites</button>
-        <button data-filter="events" role="tab" aria-selected="false">Events</button>
-        <button data-filter="dining" role="tab" aria-selected="false">Dining</button>
-        <button data-filter="lounges" role="tab" aria-selected="false">Lounges</button>
-        <button data-filter="security" role="tab" aria-selected="false">Security</button>
+      <div class="filters reveal" role="group" aria-label="Filter photos" id="gallery-filters">
+        <button type="button" class="is-active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="suites" aria-pressed="false">Suites</button>
+        <button type="button" data-filter="events" aria-pressed="false">Event Hall</button>
+        <button type="button" data-filter="dining" aria-pressed="false">Restaurant</button>
+        <button type="button" data-filter="lounges" aria-pressed="false">Lounges</button>
+        <button type="button" data-filter="security" aria-pressed="false">Safety</button>
       </div>
     </div>
     <div class="gallery-grid" id="gallery-grid"></div>
@@ -424,14 +422,14 @@
 </section>
 
 <!-- ======================= CTA BAND ======================= -->
-<section class="cta-band">
+<section class="cta-band" aria-label="Book a suite">
   <div class="cta-bg" aria-hidden="true"><img src="assets/img/lounge-deep-ruby.webp" alt="" width="810" height="1080" loading="lazy"><img src="assets/img/studio-emerald.webp" alt="" width="810" height="1080" loading="lazy"><img src="assets/img/hall-wide-2.webp" alt="" width="810" height="1080" loading="lazy"></div>
   <div class="container cta-inner reveal">
-    <h2 class="display">Your room is <em>waiting.</em></h2>
-    <p>Reserve in a minute on WhatsApp. We'll confirm availability quickly.</p>
+    <h2 class="display">Ready to <em>book?</em></h2>
+    <p>Send us your dates on WhatsApp and we'll confirm your suite.</p>
     <div class="cta-actions">
-      <button class="btn btn-gold" data-open-booking>Book a stay <svg><use href="#i-arrow"/></svg></button>
-      <a class="btn btn-ghost" data-link="tel" href="#"><svg><use href="#i-phone"/></svg>Call reception</a>
+      <button class="btn btn-gold" type="button" data-open-booking>Book a suite <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <a class="btn btn-ghost" data-link="tel" href="#contact"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call reception</a>
     </div>
   </div>
 </section>
@@ -440,47 +438,47 @@
 <section class="section light contact" id="contact">
   <div class="container contact-grid">
     <div class="contact-info">
-      <p class="eyebrow reveal"><span class="eyebrow-line"></span>Visit &amp; contact</p>
-      <h2 class="display reveal">We'd love to <em>host you.</em></h2>
+      <p class="eyebrow reveal"><span class="eyebrow-line"></span>Contact</p>
+      <h2 class="display reveal">Come and <em>see us.</em></h2>
 
       <ul class="contact-list">
-        <li class="reveal"><svg><use href="#i-pin"/></svg><div><span>Address</span><a data-link="map" href="#" target="_blank" rel="noopener" data-bind="address"></a></div></li>
-        <li class="reveal"><svg><use href="#i-phone"/></svg><div><span>Reception</span><a data-link="tel" href="#" data-bind="phoneDisplay"></a></div></li>
-        <li class="reveal"><svg><use href="#i-whatsapp"/></svg><div><span>WhatsApp</span><a data-link="wa" href="#" target="_blank" rel="noopener">Chat with us</a></div></li>
-        <li class="reveal"><svg><use href="#i-mail"/></svg><div><span>Email</span><a data-link="mail" href="#" data-bind="email"></a></div></li>
-        <li class="reveal"><svg><use href="#i-clock"/></svg><div><span>Check-in / Check-out</span><p><span data-bind="checkIn"></span> / <span data-bind="checkOut"></span> · Front desk: <span data-bind="frontDesk"></span></p></div></li>
+        <li class="reveal"><svg aria-hidden="true"><use href="#i-pin"/></svg><div><span class="cl-label">Address</span><a data-link="map" href="#contact" target="_blank" rel="noopener" data-bind="address"></a></div></li>
+        <li class="reveal"><svg aria-hidden="true"><use href="#i-phone"/></svg><div><span class="cl-label">Reception</span><a data-link="tel" href="#contact" data-bind="phoneDisplay"></a></div></li>
+        <li class="reveal"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg><div><span class="cl-label">WhatsApp</span><a data-link="wa" href="#contact" target="_blank" rel="noopener">Send us a message</a></div></li>
+        <li class="reveal"><svg aria-hidden="true"><use href="#i-mail"/></svg><div><span class="cl-label">Email</span><a data-link="mail" href="#contact" data-bind="email"></a></div></li>
+        <li class="reveal"><svg aria-hidden="true"><use href="#i-clock"/></svg><div><span class="cl-label">Check-in / check-out</span><p><span data-bind="checkIn"></span> / <span data-bind="checkOut"></span>. Front desk: <span data-bind="frontDesk"></span></p></div></li>
       </ul>
 
       <div class="map-wrap reveal" id="map-wrap">
         <div class="map-fallback">
-          <svg><use href="#i-pin"/></svg>
-          <p>Find us on the map</p>
-          <a class="btn btn-dark btn-sm" data-link="map" href="#" target="_blank" rel="noopener">Get directions <svg><use href="#i-arrow"/></svg></a>
+          <svg aria-hidden="true"><use href="#i-pin"/></svg>
+          <p>Need directions?</p>
+          <a class="btn btn-dark btn-sm" data-link="map" href="#contact" target="_blank" rel="noopener">Open in Google Maps <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
     </div>
 
     <form class="contact-form reveal" id="contact-form" novalidate>
       <h3>Send us a message</h3>
-      <p class="form-sub">Questions about rooms, events or dining? We'll get back to you quickly.</p>
+      <p class="form-sub">Ask us anything about the suites, the event hall or the restaurant.</p>
       <div class="field-row">
         <label class="field"><span>Your name</span><input name="name" required autocomplete="name"></label>
         <label class="field"><span>Phone</span><input name="phone" type="tel" required autocomplete="tel"></label>
       </div>
-      <label class="field"><span>Topic</span>
+      <label class="field"><span>What's it about?</span>
         <select name="topic">
-          <option>Room booking</option>
-          <option>Event / hall hire</option>
-          <option>Restaurant &amp; lounge</option>
+          <option>Booking a suite</option>
+          <option>Hiring the event hall</option>
+          <option>Restaurant or lounges</option>
           <option>Something else</option>
         </select>
       </label>
       <label class="field"><span>Message</span><textarea name="message" rows="4" required></textarea></label>
       <div class="form-actions">
-        <button class="btn btn-dark" type="submit"><svg><use href="#i-whatsapp"/></svg>Send on WhatsApp</button>
+        <button class="btn btn-dark" type="submit"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>Send on WhatsApp</button>
         <button class="btn btn-line" type="button" data-send-email>Send by email</button>
       </div>
-      <p class="form-error" role="alert" hidden>Please fill in your name, phone and message.</p>
+      <p class="form-error" role="alert" hidden></p>
     </form>
   </div>
 </section>
@@ -491,55 +489,54 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <a href="#top" class="brand">
-        <svg class="brand-mark"><use href="#arch"/></svg>
-        <span class="brand-text"><span class="brand-name" data-bind="name">Divine Grace</span><span class="brand-sub">Hotel &amp; Suites</span></span>
+      <a href="#top" class="brand" aria-label="Divine Grace Hotel, back to top">
+        <svg class="brand-mark" aria-hidden="true"><use href="#arch"/></svg>
+        <span class="brand-text"><span class="brand-name" data-bind="name">Divine Grace</span><span class="brand-sub">Hotel</span></span>
       </a>
-      <p>Elegant rooms, a grand hall, good food and warm hospitality, all behind secure gates.</p>
-      <div class="socials">
-        <a data-social="instagram" href="#" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
-        <a data-social="facebook" href="#" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
-        <a data-social="tiktok" href="#" aria-label="TikTok"><svg><use href="#i-tiktok"/></svg></a>
+      <p>Suites, an event hall, a restaurant and two lounges, all in one secure compound.</p>
+      <div class="socials" id="socials">
+        <a data-social="instagram" href="#top" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a>
+        <a data-social="facebook" href="#top" aria-label="Facebook"><svg aria-hidden="true"><use href="#i-facebook"/></svg></a>
+        <a data-social="tiktok" href="#top" aria-label="TikTok"><svg aria-hidden="true"><use href="#i-tiktok"/></svg></a>
       </div>
     </div>
     <div>
-      <h4>Stay</h4>
-      <a href="#rooms">Standard Room</a>
-      <a href="#rooms">Executive Room</a>
-      <a href="#rooms">Deluxe Studio</a>
-      <a href="#rooms">Grace Suite</a>
+      <h4>Suites</h4>
+      <a href="#rooms" data-room-link="standard">Standard Suite</a>
+      <a href="#rooms" data-room-link="executive">Executive Suite</a>
+      <a href="#rooms" data-room-link="presidential">Presidential Suite</a>
     </div>
     <div>
       <h4>Explore</h4>
-      <a href="#events">The Grand Hall</a>
-      <a href="#dining">Restaurant &amp; Café</a>
+      <a href="#events">Event Hall</a>
+      <a href="#dining">Restaurant</a>
       <a href="#lounges">Lounges</a>
       <a href="#gallery">Gallery</a>
     </div>
     <div>
       <h4>Contact</h4>
-      <a data-link="tel" href="#" data-bind="phoneDisplay"></a>
-      <a data-link="mail" href="#" data-bind="email"></a>
-      <a data-link="wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a data-link="tel" href="#contact" data-bind="phoneDisplay"></a>
+      <a data-link="mail" href="#contact" data-bind="email"></a>
+      <a data-link="wa" href="#contact" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </div>
   <div class="container footer-base">
-    <span>© <span id="year"></span> <span data-bind="fullName">Divine Grace Hotel</span>. All rights reserved.</span>
-    <a href="#top" class="to-top" aria-label="Back to top"><svg><use href="#i-up"/></svg></a>
+    <span>© <span id="year"></span> <span data-bind="fullName">Divine Grace Hotel</span></span>
+    <a href="#top" class="to-top" aria-label="Back to top"><svg aria-hidden="true"><use href="#i-up"/></svg></a>
   </div>
 </footer>
 
-<a class="wa-float" data-link="wa" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg><use href="#i-whatsapp"/></svg></a>
+<a class="wa-float" data-link="wa" href="#contact" target="_blank" rel="noopener" aria-label="Message us on WhatsApp"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
 
-<!-- ======================= ROOM DIALOG ======================= -->
+<!-- ======================= SUITE DIALOG ======================= -->
 <dialog class="modal room-modal" id="room-modal" aria-labelledby="rm-title">
-  <button class="modal-close" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button>
+  <button class="modal-close" type="button" data-close aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
   <div class="rm-grid">
     <div class="rm-media">
       <div class="rm-main">
-        <img id="rm-img" src="" alt="">
-        <button class="rm-nav prev" aria-label="Previous photo"><svg><use href="#i-left"/></svg></button>
-        <button class="rm-nav next" aria-label="Next photo"><svg><use href="#i-right"/></svg></button>
+        <img id="rm-img" src="data:," alt="">
+        <button class="rm-nav prev" type="button" aria-label="Previous photo"><svg aria-hidden="true"><use href="#i-left"/></svg></button>
+        <button class="rm-nav next" type="button" aria-label="Next photo"><svg aria-hidden="true"><use href="#i-right"/></svg></button>
         <span class="rm-count" id="rm-count"></span>
       </div>
       <div class="rm-thumbs" id="rm-thumbs"></div>
@@ -547,12 +544,12 @@
     <div class="rm-body">
       <p class="eyebrow"><span class="eyebrow-line"></span><span id="rm-tag"></span></p>
       <h3 id="rm-title" class="display"></h3>
-      <p class="rm-price"><span>From</span> <strong id="rm-price"></strong> <span>/ night</span></p>
+      <p class="rm-price"><span>From</span> <strong id="rm-price"></strong> <span>per night</span></p>
       <p id="rm-blurb"></p>
       <ul class="rm-amenities" id="rm-amenities"></ul>
       <div class="rm-actions">
-        <button class="btn btn-gold" id="rm-book">Reserve this room <svg><use href="#i-arrow"/></svg></button>
-        <a class="btn btn-ghost" id="rm-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-whatsapp"/></svg>Ask a question</a>
+        <button class="btn btn-gold" type="button" id="rm-book">Book this suite <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <a class="btn btn-ghost" id="rm-wa" href="#contact" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>Ask a question</a>
       </div>
     </div>
   </div>
@@ -560,13 +557,13 @@
 
 <!-- ======================= BOOKING DIALOG ======================= -->
 <dialog class="modal form-modal" id="booking-modal" aria-labelledby="bk-title">
-  <button class="modal-close" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button>
+  <button class="modal-close" type="button" data-close aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
   <form id="booking-form" novalidate>
-    <p class="eyebrow"><span class="eyebrow-line"></span>Reservations</p>
-    <h3 id="bk-title" class="display">Reserve your <em>stay</em></h3>
-    <p class="form-sub">Send your request on WhatsApp and we'll confirm availability quickly. No payment is taken online.</p>
+    <p class="eyebrow"><span class="eyebrow-line"></span>Bookings</p>
+    <h3 id="bk-title" class="display">Book your <em>stay</em></h3>
+    <p class="form-sub">Fill this in and we'll open WhatsApp with your details ready to send. We'll reply to confirm. You don't pay anything online.</p>
 
-    <label class="field"><span>Room</span><select name="room" id="bk-room"></select></label>
+    <label class="field"><span>Suite</span><select name="room" id="bk-room"></select></label>
     <div class="field-row">
       <label class="field"><span>Check-in</span><input type="date" name="checkin" required></label>
       <label class="field"><span>Check-out</span><input type="date" name="checkout" required></label>
@@ -575,7 +572,7 @@
       <label class="field"><span>Guests</span>
         <select name="guests"><option>1 adult</option><option selected>2 adults</option><option>3 adults</option><option>4 adults</option><option>Family / group</option></select>
       </label>
-      <label class="field"><span>Rooms</span>
+      <label class="field"><span>Number of suites</span>
         <select name="qty"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select>
       </label>
     </div>
@@ -583,7 +580,7 @@
       <label class="field"><span>Your name</span><input name="name" required autocomplete="name"></label>
       <label class="field"><span>Phone</span><input name="phone" type="tel" required autocomplete="tel"></label>
     </div>
-    <label class="field"><span>Special requests <em>(optional)</em></span><textarea name="notes" rows="2" placeholder="Early check-in, airport pick-up, extra pillows…"></textarea></label>
+    <label class="field"><span>Anything we should know? <em>(optional)</em></span><textarea name="notes" rows="2" placeholder="Early check-in, airport pick-up, extra pillows…"></textarea></label>
 
     <div class="estimate" id="bk-estimate" hidden>
       <span id="bk-nights"></span>
@@ -591,7 +588,7 @@
     </div>
 
     <div class="form-actions">
-      <button class="btn btn-gold" type="submit"><svg><use href="#i-whatsapp"/></svg>Send on WhatsApp</button>
+      <button class="btn btn-gold" type="submit"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>Send on WhatsApp</button>
       <button class="btn btn-line" type="button" data-send-email>Send by email</button>
     </div>
     <p class="form-error" role="alert" hidden></p>
@@ -600,32 +597,32 @@
 
 <!-- ======================= EVENT DIALOG ======================= -->
 <dialog class="modal form-modal" id="event-modal" aria-labelledby="ev-title">
-  <button class="modal-close" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button>
+  <button class="modal-close" type="button" data-close aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
   <form id="event-form" novalidate>
-    <p class="eyebrow"><span class="eyebrow-line"></span>The Grand Hall</p>
-    <h3 id="ev-title" class="display">Plan your <em>event</em></h3>
-    <p class="form-sub">Tell us a little about your event and our events team will get back to you with availability and a quote.</p>
+    <p class="eyebrow"><span class="eyebrow-line"></span>Event Hall</p>
+    <h3 id="ev-title" class="display">Tell us about your <em>event</em></h3>
+    <p class="form-sub">Let us know what you're planning and we'll get back to you with availability and prices.</p>
     <div class="field-row">
-      <label class="field"><span>Event type</span>
-        <select name="type"><option>Wedding / reception</option><option>Conference / seminar</option><option>Birthday / anniversary</option><option>Church programme</option><option>Concert / show</option><option>Product launch</option><option>Other</option></select>
+      <label class="field"><span>Type of event</span>
+        <select name="type"><option>Wedding / reception</option><option>Birthday / anniversary</option><option>Conference / seminar</option><option>Church programme</option><option>Concert / show</option><option>Product launch</option><option>Something else</option></select>
       </label>
       <label class="field"><span>Date</span><input type="date" name="date" required></label>
     </div>
     <div class="field-row">
-      <label class="field"><span>Expected guests</span>
-        <select name="size"><option>Under 100</option><option>100 – 250</option><option>250 – 500</option><option>500+</option></select>
+      <label class="field"><span>How many guests?</span>
+        <select name="size"><option>Under 100</option><option>100 to 250</option><option>250 to 500</option><option>More than 500</option></select>
       </label>
-      <label class="field"><span>Rooms needed?</span>
-        <select name="rooms"><option>No rooms</option><option>1 – 5 rooms</option><option>6 – 15 rooms</option><option>Whole block</option></select>
+      <label class="field"><span>Need suites too?</span>
+        <select name="rooms"><option>No suites needed</option><option>1 to 5 suites</option><option>6 to 15 suites</option><option>As many as you have</option></select>
       </label>
     </div>
     <div class="field-row">
       <label class="field"><span>Your name</span><input name="name" required autocomplete="name"></label>
       <label class="field"><span>Phone</span><input name="phone" type="tel" required autocomplete="tel"></label>
     </div>
-    <label class="field"><span>Anything else? <em>(optional)</em></span><textarea name="notes" rows="2" placeholder="Catering, décor, sound, timings…"></textarea></label>
+    <label class="field"><span>Anything else? <em>(optional)</em></span><textarea name="notes" rows="2" placeholder="Catering, decoration, sound, timings…"></textarea></label>
     <div class="form-actions">
-      <button class="btn btn-gold" type="submit"><svg><use href="#i-whatsapp"/></svg>Send on WhatsApp</button>
+      <button class="btn btn-gold" type="submit"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>Send on WhatsApp</button>
       <button class="btn btn-line" type="button" data-send-email>Send by email</button>
     </div>
     <p class="form-error" role="alert" hidden></p>
@@ -634,13 +631,13 @@
 
 <!-- ======================= LIGHTBOX ======================= -->
 <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
-  <button class="lb-close" data-close aria-label="Close"><svg><use href="#i-close"/></svg></button>
-  <button class="lb-nav prev" aria-label="Previous photo"><svg><use href="#i-left"/></svg></button>
+  <button class="lb-close" type="button" data-close aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  <button class="lb-nav prev" type="button" aria-label="Previous photo"><svg aria-hidden="true"><use href="#i-left"/></svg></button>
   <figure class="lb-figure">
-    <img id="lb-img" src="" alt="">
+    <img id="lb-img" src="data:," alt="">
     <figcaption><span id="lb-caption"></span><span id="lb-count"></span></figcaption>
   </figure>
-  <button class="lb-nav next" aria-label="Next photo"><svg><use href="#i-right"/></svg></button>
+  <button class="lb-nav next" type="button" aria-label="Next photo"><svg aria-hidden="true"><use href="#i-right"/></svg></button>
 </dialog>
 
 <script src="js/config.js"></script>

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Divine Grace Hotel — interactions
+   Divine Grace Hotel: interactions
    ========================================================================== */
 (() => {
   "use strict";
@@ -24,6 +24,15 @@
   const waLink = (text) => `https://wa.me/${H.whatsapp}${text ? "?text=" + encodeURIComponent(text) : ""}`;
   const mailLink = (subject, body) =>
     `mailto:${H.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  // Open a WhatsApp link in a new tab, or an email in the visitor's mail app
+  const openUrl = (url, newTab) => {
+    const a = document.createElement("a");
+    a.href = url;
+    if (newTab) { a.target = "_blank"; a.rel = "noopener"; }
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
   const mapLink = () =>
     `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(H.mapQuery || H.fullName + " " + H.address)}`;
 
@@ -41,7 +50,9 @@
   $$("[data-social]").forEach((el) => {
     const url = H.social[el.dataset.social];
     if (url && url !== "#") { el.href = url; el.target = "_blank"; el.rel = "noopener"; }
+    else el.hidden = true;
   });
+  if (!$$("[data-social]").some((el) => !el.hidden)) $("#socials").hidden = true;
   $("#year").textContent = new Date().getFullYear();
 
   if (H.mapQuery) {
@@ -157,7 +168,7 @@
   const grid = $("#room-grid");
   grid.innerHTML = ROOMS.map((r, i) => `
     <article class="room-card reveal" style="--rd:${i * 0.08}s" data-room="${r.id}">
-      <div class="room-media" role="button" tabindex="0" aria-label="View ${r.name} photos and details">
+      <div class="room-media" role="button" tabindex="0" aria-label="See photos and details of the ${r.name}">
         ${r.images.slice(0, 4).map((n, k) => `<img src="${IMG(n, k > 0)}" alt="${k === 0 ? r.name : ""}" width="${k ? 480 : 810}" height="${k ? 640 : 1080}" loading="lazy" class="${k === 0 ? "is-on" : ""}">`).join("")}
         <div class="room-dots">${r.images.slice(0, 4).map((_, k) => `<i class="${k === 0 ? "is-on" : ""}"></i>`).join("")}</div>
         <div class="room-price"><small>From</small><strong>${money(r.price)}</strong></div>
@@ -166,8 +177,8 @@
       <div class="room-foot">
         <div class="room-tags">${r.highlights.map((h) => `<span>${h}</span>`).join("")}</div>
         <div class="room-actions">
-          <button class="btn btn-ghost" data-view="${r.id}">Explore</button>
-          <button class="btn btn-gold" data-book="${r.id}">Book</button>
+          <button class="btn btn-ghost" type="button" data-view="${r.id}">View suite</button>
+          <button class="btn btn-gold" type="button" data-book="${r.id}">Book</button>
         </div>
       </div>
     </article>`).join("");
@@ -222,6 +233,7 @@
     rmShow(0);
     openDialog(rm);
   }
+  $$("[data-room-link]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); openRoom(a.dataset.roomLink); }));
   $(".rm-nav.prev", rm).addEventListener("click", () => rmShow(rmIndex - 1));
   $(".rm-nav.next", rm).addEventListener("click", () => rmShow(rmIndex + 1));
   rm.addEventListener("keydown", (e) => {
@@ -237,7 +249,7 @@
   const bk = $("#booking-modal");
   const bkForm = $("#booking-form");
   $("#bk-room").innerHTML = ROOMS.map((r) => `<option value="${r.id}">${r.name} · from ${money(r.price)}</option>`).join("") +
-    `<option value="any">Not sure yet, please advise</option>`;
+    `<option value="any">Not sure yet, help me choose</option>`;
   linkDates(bkForm);
 
   function updateEstimate() {
@@ -248,7 +260,7 @@
     const box = $("#bk-estimate");
     if (room && n > 0) {
       box.hidden = false;
-      $("#bk-nights").textContent = `${n} night${n > 1 ? "s" : ""} × ${qty} room${qty > 1 ? "s" : ""} · estimate`;
+      $("#bk-nights").textContent = `Estimate for ${n} night${n > 1 ? "s" : ""}, ${qty} suite${qty > 1 ? "s" : ""}`;
       $("#bk-total").textContent = money(room.price * n * qty);
     } else box.hidden = true;
   }
@@ -298,11 +310,11 @@
     return [
       `Hello ${H.fullName}, I'd like to book a stay.`,
       ``,
-      `Room: ${room ? room.name : "Please advise"}`,
+      `Suite: ${room ? room.name : "Not sure yet, please help me choose"}`,
       `Check-in: ${pretty(f.checkin.value)}`,
       `Check-out: ${pretty(f.checkout.value)} (${n} night${n > 1 ? "s" : ""})`,
       `Guests: ${f.guests.value}`,
-      `Rooms: ${f.qty.value}`,
+      `Number of suites: ${f.qty.value}`,
       `Name: ${f.name.value.trim()}`,
       `Phone: ${f.phone.value.trim()}`,
       f.notes.value.trim() ? `Requests: ${f.notes.value.trim()}` : "",
@@ -316,10 +328,10 @@
   }
   bkForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (bookingValid()) window.open(waLink(bookingMessage()), "_blank", "noopener");
+    if (bookingValid()) openUrl(waLink(bookingMessage()), true);
   });
   $("[data-send-email]", bkForm).addEventListener("click", () => {
-    if (bookingValid()) location.href = mailLink(`Booking request: ${bkForm.elements.name.value.trim()}`, bookingMessage());
+    if (bookingValid()) openUrl(mailLink(`Booking request: ${bkForm.elements.name.value.trim()}`, bookingMessage()));
   });
 
   /* ------------------------------------------------------------------
@@ -332,12 +344,12 @@
   const eventMessage = () => {
     const f = evForm.elements;
     return [
-      `Hello ${H.fullName}, I'd like to enquire about the Grand Hall.`,
+      `Hello ${H.fullName}, I'd like to ask about booking the event hall.`,
       ``,
       `Event: ${f.type.value}`,
       `Date: ${pretty(f.date.value)}`,
       `Guests: ${f.size.value}`,
-      `Rooms: ${f.rooms.value}`,
+      `Suites: ${f.rooms.value}`,
       `Name: ${f.name.value.trim()}`,
       `Phone: ${f.phone.value.trim()}`,
       f.notes.value.trim() ? `Notes: ${f.notes.value.trim()}` : "",
@@ -347,8 +359,8 @@
     if (!validate(evForm, ["date", "name", "phone"])) { showError(evForm, "Please add the date, your name and phone number."); return false; }
     showError(evForm, ""); return true;
   };
-  evForm.addEventListener("submit", (e) => { e.preventDefault(); if (eventValid()) window.open(waLink(eventMessage()), "_blank", "noopener"); });
-  $("[data-send-email]", evForm).addEventListener("click", () => { if (eventValid()) location.href = mailLink(`Event enquiry: ${evForm.elements.type.value}`, eventMessage()); });
+  evForm.addEventListener("submit", (e) => { e.preventDefault(); if (eventValid()) openUrl(waLink(eventMessage()), true); });
+  $("[data-send-email]", evForm).addEventListener("click", () => { if (eventValid()) openUrl(mailLink(`Event enquiry: ${evForm.elements.type.value}`, eventMessage())); });
 
   /* ------------------------------------------------------------------
      Contact form
@@ -360,11 +372,11 @@
   };
   const contactValid = () => {
     const ok = validate(cf, ["name", "phone", "message"]);
-    $(".form-error", cf).hidden = ok;
+    showError(cf, ok ? "" : "Please add your name, phone number and a message.");
     return ok;
   };
-  cf.addEventListener("submit", (e) => { e.preventDefault(); if (contactValid()) window.open(waLink(contactMessage()), "_blank", "noopener"); });
-  $("[data-send-email]", cf).addEventListener("click", () => { if (contactValid()) location.href = mailLink(`Enquiry: ${cf.elements.topic.value}`, contactMessage()); });
+  cf.addEventListener("submit", (e) => { e.preventDefault(); if (contactValid()) openUrl(waLink(contactMessage()), true); });
+  $("[data-send-email]", cf).addEventListener("click", () => { if (contactValid()) openUrl(mailLink(`Enquiry: ${cf.elements.topic.value}`, contactMessage())); });
   $$("input, textarea", document).forEach((el) => el.addEventListener("input", () => el.classList.remove("is-invalid")));
 
   /* ------------------------------------------------------------------
@@ -379,18 +391,18 @@
   // Preload every mood photo into the frame (stacked for crossfade)
   frame.innerHTML = MOODS.flatMap((s, si) => s.moods.map((m, mi) =>
     `<img src="${IMG(m.img)}" alt="${s.space} lit in ${m.name.toLowerCase()}" data-key="${si}-${mi}" width="810" height="1080" loading="lazy">`)).join("");
-  spacesEl.innerHTML = MOODS.map((s, i) => `<button role="tab" aria-selected="${i === 0}" data-space="${i}">${s.space}</button>`).join("");
+  spacesEl.innerHTML = MOODS.map((s, i) => `<button type="button" aria-pressed="${i === 0}" data-space="${i}">${s.space}</button>`).join("");
 
   function renderSwatches() {
     swatchesEl.innerHTML = MOODS[space].moods.map((m, i) =>
-      `<button class="swatch" style="--c:${m.color}" aria-pressed="${i === mood}" data-mood="${i}" aria-label="${m.name}"><span>${m.name}</span></button>`).join("");
+      `<button type="button" class="swatch" style="--c:${m.color}" aria-pressed="${i === mood}" data-mood="${i}" aria-label="${m.name} light"><span>${m.name}</span></button>`).join("");
   }
   function applyMood() {
     const m = MOODS[space].moods[mood];
     $$("img", frame).forEach((img) => img.classList.toggle("is-on", img.dataset.key === `${space}-${mood}`));
     moodSec.style.setProperty("--glow", m.color);
     $("#mood-label").textContent = `${MOODS[space].space} · ${m.name}`;
-    $$("button", spacesEl).forEach((b, i) => b.setAttribute("aria-selected", String(i === space)));
+    $$("button", spacesEl).forEach((b, i) => b.setAttribute("aria-pressed", String(i === space)));
     $$(".swatch", swatchesEl).forEach((b, i) => b.setAttribute("aria-pressed", String(i === mood)));
   }
   spacesEl.addEventListener("click", (e) => {
@@ -477,7 +489,7 @@
 
   $("#gallery-filters").addEventListener("click", (e) => {
     const b = e.target.closest("[data-filter]"); if (!b) return;
-    $$("#gallery-filters button").forEach((x) => { x.classList.toggle("is-active", x === b); x.setAttribute("aria-selected", String(x === b)); });
+    $$("#gallery-filters button").forEach((x) => { x.classList.toggle("is-active", x === b); x.setAttribute("aria-pressed", String(x === b)); });
     const f = b.dataset.filter;
     $$(".g-item", gGrid).forEach((el) => {
       el.classList.toggle("is-hidden", f !== "all" && el.dataset.cat !== f);
