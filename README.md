@@ -52,11 +52,9 @@ Upload the whole folder to any static host:
 
 ## Adding a room or outdoor view to the 360° tour
 
-1. Get a 2:1 panorama image: from a 360 camera, a phone's panorama/photo-sphere mode, or generated from photos.
+1. Get a 2:1 panorama image: from a 360 camera or a phone's panorama/photo-sphere mode.
 2. Run `python3 tools/process_panorama.py path/to/panorama.jpg my-scene` (add `--partial` if the left and right edges don't join up). It writes `assets/tour/my-scene.jpg` and prints a `haov` value.
 3. Add a scene to `TOUR.scenes` in `js/config.js` with that image name and `haov`. Add `hotspots` with `go: "<scene id>"` to link doorways between scenes.
-
-The current 360° views were generated with AI from the hotel's own photos, and the site says so under the viewer.
 
 ## Adding or replacing photos
 

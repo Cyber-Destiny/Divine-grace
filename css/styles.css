@@ -812,7 +812,6 @@ dialog::backdrop { background: rgba(5, 6, 12, .78); backdrop-filter: blur(6px); 
 .tour-item img { width: 96px; height: 64px; border-radius: 10px; object-fit: cover; }
 .tour-item span { font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); font-weight: 600; display: block; }
 .tour-item strong { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; line-height: 1.15; display: block; }
-.tour-note { font-size: .8rem; margin: 18px 0 0; max-width: 760px; }
 
 /* hotspots inside the viewer */
 .tour-hs { position: absolute; cursor: default; }

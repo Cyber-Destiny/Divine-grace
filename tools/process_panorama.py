@@ -6,7 +6,7 @@ Usage:
                                                                     right edges do not meet
   python3 tools/process_panorama.py <input> <slug> --segments 0.47-1,0-0.15
         keep only these horizontal slices (fractions of the width), joined in order;
-        use this to cut out a section the AI repeated. The result is a partial view.
+        use this to cut out a section that repeats. The result is a partial view.
 
 Writes assets/tour/<slug>.jpg (max 4096 px wide, the largest phones can show in 3D),
 assets/tour/<slug>-thumb.jpg, and prints the "haov" value to put in js/config.js.

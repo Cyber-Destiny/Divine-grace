@@ -133,7 +133,6 @@ window.MOODS = [
    hotspots : labels in the scene. Add go: "<scene id>" to make it a doorway.
    -------------------------------------------------------------------------- */
 window.TOUR = {
-  note: "These 360° views were made from our own photos using AI imaging. The furniture and layout match the real rooms, but some small details may look different in person.",
   scenes: [
     {
       id: "standard",

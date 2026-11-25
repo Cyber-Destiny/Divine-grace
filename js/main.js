@@ -443,7 +443,6 @@
     tourSec.hidden = true;
     $$('a[href="#tour"]').forEach((a) => (a.hidden = true));
   }
-  $("#tour-note").textContent = TOUR.note || "";
   $("#tour-list").innerHTML = tourScenes.map((sc) => `
     <button type="button" class="tour-item" data-scene="${sc.id}" aria-pressed="${sc.id === currentScene}">
       <img src="assets/tour/${sc.image}-thumb.jpg" alt="" width="96" height="64" loading="lazy">
