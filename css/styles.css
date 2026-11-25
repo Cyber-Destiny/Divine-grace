@@ -468,7 +468,7 @@ p { margin: 0 0 1.1em; }
 .g-item span { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 1; font-size: .82rem; font-weight: 500; transform: translateY(8px); opacity: 0; transition: all .4s var(--ease); }
 .g-item:hover img, .g-item:focus-visible img { transform: scale(1.07); }
 .g-item:hover::after, .g-item:hover span, .g-item:focus-visible::after, .g-item:focus-visible span { opacity: 1; transform: none; }
-.g-item.wide { grid-column: span 2; aspect-ratio: auto; }
+.g-item.wide { grid-column: span 2; aspect-ratio: 3 / 2; }
 
 /* ---------- CTA band ---------- */
 .cta-band { position: relative; padding: clamp(110px, 14vw, 180px) 0; overflow: hidden; isolation: isolate; text-align: center; }
@@ -847,4 +847,28 @@ dialog::backdrop { background: rgba(5, 6, 12, .78); backdrop-filter: blur(6px); 
   .tour-hint { bottom: 76px; }
   .tour-item { flex-basis: 210px; grid-template-columns: 80px 1fr; }
   .tour-item img { width: 80px; height: 56px; }
+}
+
+/* ==========================================================================
+   Outside band
+   ========================================================================== */
+.outside { position: relative; min-height: min(86vh, 780px); display: flex; align-items: flex-end; overflow: hidden; isolation: isolate; background: #07080f; }
+.outside-media { position: absolute; inset: 0; margin: 0; z-index: -2; }
+.outside-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; animation: outside-drift 24s ease-in-out infinite alternate; }
+@keyframes outside-drift { from { transform: scale(1.02); } to { transform: scale(1.1) translateX(-1.5%); } }
+.outside::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(7, 8, 15, .88) 0%, rgba(7, 8, 15, .55) 38%, rgba(7, 8, 15, 0) 70%),
+    linear-gradient(180deg, rgba(7, 8, 15, .55) 0%, rgba(7, 8, 15, 0) 22%, rgba(7, 8, 15, 0) 60%, rgba(7, 8, 15, .9) 100%);
+}
+.outside-inner { padding-top: 120px; padding-bottom: clamp(56px, 8vw, 96px); }
+.outside-copy { max-width: 520px; }
+.outside-copy p:not(.eyebrow) { color: rgba(243, 237, 226, .82); font-size: 1.06rem; }
+.outside-copy .btn { margin-top: 10px; }
+@media (max-width: 680px) {
+  .outside { min-height: 82vh; }
+  .outside-media img { object-position: 47% 50%; }
+  .outside::before { background: linear-gradient(180deg, rgba(7, 8, 15, .5) 0%, rgba(7, 8, 15, 0) 25%, rgba(7, 8, 15, .35) 50%, rgba(7, 8, 15, .95) 100%); }
+  .outside-copy .btn { width: 100%; }
 }

@@ -198,9 +198,11 @@ window.TOUR = {
 };
 
 /* ---- Gallery --------------------------------------------------------------
-   cat must be one of: suites, events, dining, lounges, security
+   cat must be one of: outside, suites, events, dining, lounges, security
+   wide: true shows a landscape photo across two columns
    -------------------------------------------------------------------------- */
 window.GALLERY = [
+  { img: "outside-night", cat: "outside", caption: "The hotel at night", wide: true },
   { img: "executive-1", cat: "suites", caption: "Presidential Suite bedroom" },
   { img: "hall-wide", cat: "events", caption: "The event hall" },
   { img: "lounge-violet", cat: "lounges", caption: "Velvet Lounge" },
@@ -208,6 +210,7 @@ window.GALLERY = [
   { img: "dining-2", cat: "dining", caption: "The restaurant" },
   { img: "standard-blue", cat: "suites", caption: "Standard Suite" },
   { img: "pearl-blue", cat: "lounges", caption: "Pearl Lounge" },
+  { img: "outside-night-2", cat: "outside", caption: "The rotunda and courtyard fountain", wide: true },
   { img: "suite-living", cat: "suites", caption: "Presidential Suite living room" },
   { img: "hall-stage", cat: "events", caption: "The stage" },
   { img: "sec-card", cat: "security", caption: "Key-card lock" },

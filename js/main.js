@@ -109,8 +109,8 @@
      Hero: drifting photo columns
      ------------------------------------------------------------------ */
   const heroSets = [
-    ["executive-1", "lounge-violet", "hall-wide", "studio-emerald", "dining-2"],
-    ["standard-blue", "pearl-blue", "suite-living", "hall-stage", "executive-bed"],
+    ["executive-1", "lounge-violet", "outside-night-tall", "studio-emerald", "dining-2"],
+    ["standard-blue", "pearl-blue", "suite-living", "hall-wide", "executive-bed"],
     ["studio-wide-ruby", "dining-6", "lounge-deep-ruby", "standard-bed-violet", "door-301"],
   ];
   $$(".hero-col").forEach((col, i) => {
@@ -626,8 +626,8 @@
      ------------------------------------------------------------------ */
   const gGrid = $("#gallery-grid");
   gGrid.innerHTML = GALLERY.map((g, i) => `
-    <a class="g-item reveal" href="${IMG(g.img)}" data-cat="${g.cat}" data-index="${i}" style="--rd:${(i % 4) * 0.06}s">
-      <img src="${IMG(g.img, true)}" alt="${g.caption}" width="480" height="640" loading="lazy" decoding="async">
+    <a class="g-item reveal${g.wide ? " wide" : ""}" href="${IMG(g.img)}" data-cat="${g.cat}" data-index="${i}" style="--rd:${(i % 4) * 0.06}s">
+      <img src="${IMG(g.img, !g.wide)}" alt="${g.caption}" width="${g.wide ? 1280 : 480}" height="${g.wide ? 720 : 640}" loading="lazy" decoding="async">
       <span>${g.caption}</span>
     </a>`).join("");
 
@@ -672,6 +672,12 @@
       openLightbox(list, group.indexOf(fig));
     });
   });
+
+  // Links elsewhere on the page that open the gallery on one category
+  $$("[data-gallery-filter]").forEach((a) => a.addEventListener("click", () => {
+    const btn = $(`#gallery-filters [data-filter="${a.dataset.galleryFilter}"]`);
+    if (btn) btn.click();
+  }));
 
   $("#gallery-filters").addEventListener("click", (e) => {
     const b = e.target.closest("[data-filter]"); if (!b) return;
