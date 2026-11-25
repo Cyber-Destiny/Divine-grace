@@ -13,7 +13,7 @@ window.HOTEL = {
   phone: "+2348000000000",          // used for tap-to-call
   whatsapp: "2348000000000",        // country code + number, digits only, no "+" or spaces
   email: "info@divinegracehotel.com",
-  address: "Street address, City, State, Nigeria",
+  address: "Omu-Aran, Kwara State, Nigeria",       // add the street when ready, written exactly as on your Google Business Profile
   mapQuery: "",                     // e.g. "Divine Grace Hotel, Ibadan". When filled in, a live Google map appears
 
   checkIn: "2:00 PM",

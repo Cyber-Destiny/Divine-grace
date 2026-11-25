@@ -871,3 +871,28 @@ dialog::backdrop { background: rgba(5, 6, 12, .78); backdrop-filter: blur(6px); 
   .outside::before { background: linear-gradient(180deg, rgba(7, 8, 15, .5) 0%, rgba(7, 8, 15, 0) 25%, rgba(7, 8, 15, .35) 50%, rgba(7, 8, 15, .95) 100%); }
   .outside-copy .btn { width: 100%; }
 }
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+.faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(40px, 7vw, 100px); align-items: start; }
+.faq-head { position: sticky; top: 110px; }
+.faq-head > p:not(.eyebrow) { max-width: 380px; }
+.faq-list { border-top: 1px solid var(--ink-line); }
+.faq-item { border-bottom: 1px solid var(--ink-line); }
+.faq-item summary {
+  list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  padding: 22px 0; font-family: var(--serif); font-size: clamp(1.2rem, 1.8vw, 1.45rem); font-weight: 500; color: var(--text);
+  transition: color .3s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--gold); }
+.faq-icon { position: relative; flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1px solid var(--ink-line); }
+.faq-icon::before, .faq-icon::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; background: var(--gold); transform: translate(-50%, -50%); transition: transform .3s var(--ease); }
+.faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+.faq-item[open] .faq-icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+.faq-item p { margin: 0 0 22px; max-width: 620px; }
+@media (max-width: 960px) {
+  .faq-grid { grid-template-columns: 1fr; gap: 24px; }
+  .faq-head { position: static; }
+}
