@@ -465,7 +465,7 @@
 
   function hotspotDom(div, hs) {
     div.classList.add("tour-hs", hs.go ? "tour-hs-go" : "tour-hs-info");
-    div.innerHTML = `<span class="tour-hs-dot"></span><span class="tour-hs-label">${hs.text}</span>`;
+    div.innerHTML = `<span class="tour-hs-dot"></span>`;
     if (hs.go) {
       div.setAttribute("role", "button");
       div.setAttribute("tabindex", "0");

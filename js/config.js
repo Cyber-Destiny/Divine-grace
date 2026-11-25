@@ -130,7 +130,7 @@ window.MOODS = [
    room     : suite id from ROOMS above, so "Book this suite" picks the right one
    haov     : how far round the picture goes, in degrees (360 = all the way)
    yaw/pitch: where the view starts (yaw: left/right, pitch: up/down)
-   hotspots : labels in the scene. Add go: "<scene id>" to make it a doorway.
+   hotspots : doorways: a gold arrow at yaw/pitch that walks to scene "go"
    -------------------------------------------------------------------------- */
 window.TOUR = {
   scenes: [
@@ -144,10 +144,6 @@ window.TOUR = {
       pitch: -6,
       hotspots: [
         { yaw: 116, pitch: -8, go: "bathroom", text: "Bathroom" },
-        { yaw: -5, pitch: -28, text: "King-size bed" },
-        { yaw: -110, pitch: 12, text: "TV and work desk" },
-        { yaw: -139, pitch: 14, text: "Key-card switch and video intercom" },
-        { yaw: 146, pitch: 4, text: "Wardrobe with mirror" },
       ],
     },
     {
@@ -161,7 +157,6 @@ window.TOUR = {
       minPitch: -38,
       hotspots: [
         { yaw: 93, pitch: -6, go: "standard", text: "Back to the bedroom" },
-        { yaw: -77, pitch: 6, text: "Shower cabin with massage jets" },
       ],
     },
     {
@@ -172,13 +167,6 @@ window.TOUR = {
       haov: 244.8,
       yaw: -15,
       pitch: -6,
-      hotspots: [
-        { yaw: -70, pitch: 20, text: "Lit feature wall" },
-        { yaw: -86, pitch: -16, text: "Leather armchairs" },
-        { yaw: -13, pitch: -4, text: "King-size bed" },
-        { yaw: 41, pitch: -16, text: "Three-seater sofa" },
-        { yaw: 83, pitch: -25, text: "Work desk" },
-      ],
     },
     {
       id: "presidential-bedroom",
@@ -188,11 +176,6 @@ window.TOUR = {
       haov: 358,
       yaw: 4,
       pitch: -8,
-      hotspots: [
-        { yaw: -23, pitch: -24, text: "King-size bed" },
-        { yaw: 34, pitch: 15, text: "Full-height wardrobe" },
-        { yaw: 77, pitch: -17, text: "Armchair" },
-      ],
     },
   ],
 };
