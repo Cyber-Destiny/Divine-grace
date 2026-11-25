@@ -124,6 +124,80 @@ window.MOODS = [
   },
 ];
 
+/* ---- 360° virtual tour ---------------------------------------------------
+   image    : file name in assets/tour (without .jpg). Make one with
+              tools/process_panorama.py, which also prints the haov value.
+   room     : suite id from ROOMS above, so "Book this suite" picks the right one
+   haov     : how far round the picture goes, in degrees (360 = all the way)
+   yaw/pitch: where the view starts (yaw: left/right, pitch: up/down)
+   hotspots : labels in the scene. Add go: "<scene id>" to make it a doorway.
+   -------------------------------------------------------------------------- */
+window.TOUR = {
+  note: "These 360° views were made from our own photos using AI imaging. The furniture and layout match the real rooms, but some small details may look different in person.",
+  scenes: [
+    {
+      id: "standard",
+      title: "Bedroom",
+      room: "standard",
+      image: "standard-suite",
+      haov: 360,
+      yaw: 10,
+      pitch: -6,
+      hotspots: [
+        { yaw: 116, pitch: -8, go: "bathroom", text: "Bathroom" },
+        { yaw: -5, pitch: -28, text: "King-size bed" },
+        { yaw: -110, pitch: 12, text: "TV and work desk" },
+        { yaw: -139, pitch: 14, text: "Key-card switch and video intercom" },
+        { yaw: 146, pitch: 4, text: "Wardrobe with mirror" },
+      ],
+    },
+    {
+      id: "bathroom",
+      title: "Bathroom",
+      room: "standard",
+      image: "bathroom",
+      haov: 358,
+      yaw: -55,
+      pitch: 0,
+      minPitch: -38,
+      hotspots: [
+        { yaw: 93, pitch: -6, go: "standard", text: "Back to the bedroom" },
+        { yaw: -77, pitch: 6, text: "Shower cabin with massage jets" },
+      ],
+    },
+    {
+      id: "executive",
+      title: "Bedroom and lounge",
+      room: "executive",
+      image: "executive-suite",
+      haov: 244.8,
+      yaw: -15,
+      pitch: -6,
+      hotspots: [
+        { yaw: -70, pitch: 20, text: "Lit feature wall" },
+        { yaw: -86, pitch: -16, text: "Leather armchairs" },
+        { yaw: -13, pitch: -4, text: "King-size bed" },
+        { yaw: 41, pitch: -16, text: "Three-seater sofa" },
+        { yaw: 83, pitch: -25, text: "Work desk" },
+      ],
+    },
+    {
+      id: "presidential-bedroom",
+      title: "Bedroom",
+      room: "presidential",
+      image: "presidential-bedroom",
+      haov: 358,
+      yaw: 4,
+      pitch: -8,
+      hotspots: [
+        { yaw: -23, pitch: -24, text: "King-size bed" },
+        { yaw: 34, pitch: 15, text: "Full-height wardrobe" },
+        { yaw: 77, pitch: -17, text: "Armchair" },
+      ],
+    },
+  ],
+};
+
 /* ---- Gallery --------------------------------------------------------------
    cat must be one of: suites, events, dining, lounges, security
    -------------------------------------------------------------------------- */

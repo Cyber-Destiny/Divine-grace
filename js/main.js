@@ -230,6 +230,7 @@
     $("#rm-thumbs").innerHTML = rmRoom.images.map((n, k) => `<button aria-label="Photo ${k + 1}"><img src="${IMG(n, true)}" alt="" loading="lazy"></button>`).join("");
     $$("#rm-thumbs button").forEach((b, k) => b.addEventListener("click", () => rmShow(k)));
     $("#rm-wa").href = waLink(`Hello ${H.fullName}, I have a question about the ${rmRoom.name}.`);
+    $("#rm-tour").hidden = !(window.TOUR && (window.TOUR.scenes || []).some((sc) => sc.room === rmRoom.id));
     rmShow(0);
     openDialog(rm);
   }
@@ -425,6 +426,192 @@
   function stopAuto() { clearInterval(autoTimer); autoTimer = null; }
   new IntersectionObserver(([e]) => (e.isIntersecting ? startAuto() : stopAuto()), { threshold: 0.4 }).observe(moodSec);
   renderSwatches(); applyMood();
+
+  /* ------------------------------------------------------------------
+     360° virtual tour (Pannellum viewer, loaded only when needed)
+     ------------------------------------------------------------------ */
+  const TOUR = window.TOUR || { scenes: [] };
+  const tourScenes = TOUR.scenes || [];
+  const tourSec = $("#tour");
+  const tourStage = $("#tour-stage");
+  const sceneById = (id) => tourScenes.find((sc) => sc.id === id);
+  const roomName = (id) => (ROOMS.find((r) => r.id === id) || {}).name || "";
+  const firstSceneFor = (roomId) => tourScenes.find((sc) => sc.room === roomId);
+  let viewer = null, pannellumLoading = null, currentScene = tourScenes.length ? tourScenes[0].id : null;
+
+  if (!tourScenes.length) {
+    tourSec.hidden = true;
+    $$('a[href="#tour"]').forEach((a) => (a.hidden = true));
+  }
+  $("#tour-note").textContent = TOUR.note || "";
+  $("#tour-list").innerHTML = tourScenes.map((sc) => `
+    <button type="button" class="tour-item" data-scene="${sc.id}" aria-pressed="${sc.id === currentScene}">
+      <img src="assets/tour/${sc.image}-thumb.jpg" alt="" width="96" height="64" loading="lazy">
+      <div><span>${roomName(sc.room)}</span><strong>${sc.title}</strong></div>
+    </button>`).join("");
+
+  function loadPannellum() {
+    if (window.pannellum) return Promise.resolve();
+    if (!pannellumLoading) {
+      pannellumLoading = new Promise((resolve, reject) => {
+        const tag = document.createElement("script");
+        tag.src = "vendor/pannellum/pannellum.js";
+        tag.onload = resolve;
+        tag.onerror = () => { pannellumLoading = null; reject(); };
+        document.head.appendChild(tag);
+      });
+    }
+    return pannellumLoading;
+  }
+
+  function hotspotDom(div, hs) {
+    div.classList.add("tour-hs", hs.go ? "tour-hs-go" : "tour-hs-info");
+    div.innerHTML = `<span class="tour-hs-dot"></span><span class="tour-hs-label">${hs.text}</span>`;
+    if (hs.go) {
+      div.setAttribute("role", "button");
+      div.setAttribute("tabindex", "0");
+      div.setAttribute("aria-label", hs.text);
+      div.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showScene(hs.go); } });
+    }
+  }
+
+  function sceneConfig(sc) {
+    const partial = sc.haov < 360;
+    return {
+      type: "equirectangular",
+      panorama: `assets/tour/${sc.image}.jpg`,
+      haov: sc.haov, vaov: 180,
+      minYaw: partial ? -sc.haov / 2 : -180,
+      maxYaw: partial ? sc.haov / 2 : 180,
+      yaw: sc.yaw || 0, pitch: sc.pitch || 0, hfov: 100,
+      minPitch: sc.minPitch !== undefined ? sc.minPitch : -75,
+      maxPitch: sc.maxPitch !== undefined ? sc.maxPitch : 75,
+      hotSpots: (sc.hotspots || []).map((h) => ({
+        pitch: h.pitch, yaw: h.yaw,
+        type: h.go ? "scene" : "info", sceneId: h.go,
+        cssClass: "tour-hs-base", createTooltipFunc: hotspotDom, createTooltipArgs: h,
+      })),
+    };
+  }
+
+  function updateTourUI() {
+    const sc = sceneById(currentScene);
+    if (!sc) return;
+    $("#tour-room").textContent = roomName(sc.room);
+    $("#tour-title").textContent = sc.title;
+    $("#tour-poster-img").src = `assets/tour/${sc.image}-thumb.jpg`;
+    $$(".tour-item").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.scene === currentScene)));
+  }
+
+  let hintTimer = null;
+  const hideHint = () => $("#tour-hint").classList.add("is-hidden");
+
+  async function showScene(id) {
+    if (id && sceneById(id)) currentScene = id;
+    updateTourUI();
+    $("#tour-poster").classList.add("is-hidden");
+    $("#tour-error").hidden = true;
+    if (viewer) {
+      if (viewer.getScene() !== currentScene) viewer.loadScene(currentScene);
+      return;
+    }
+    try { await loadPannellum(); } catch (err) { $("#tour-error").hidden = false; return; }
+    if (viewer) { if (viewer.getScene() !== currentScene) viewer.loadScene(currentScene); return; }
+    const scenes = {};
+    tourScenes.forEach((sc) => (scenes[sc.id] = sceneConfig(sc)));
+    viewer = window.pannellum.viewer("tour-viewer", {
+      default: {
+        firstScene: currentScene,
+        sceneFadeDuration: 900,
+        autoLoad: true,
+        showControls: false,
+        mouseZoom: "fullscreenonly",
+        keyboardZoom: true,
+        autoRotate: reduceMotion ? 0 : -1.5,
+        autoRotateInactivityDelay: reduceMotion ? -1 : 6000,
+        friction: 0.15,
+        backgroundColor: [0.04, 0.045, 0.08],
+        strings: { loadingLabel: "Loading the room…" },
+      },
+      scenes,
+    });
+    window.__tourViewer = viewer;
+    viewer.on("scenechange", (sid) => { currentScene = sid; updateTourUI(); });
+    viewer.on("error", () => { $("#tour-error").hidden = false; });
+    viewer.on("mousedown", hideHint);
+    viewer.on("touchstart", hideHint);
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(hideHint, 7000);
+    if (reduceMotion) $('[data-tour="rotate"]').setAttribute("aria-pressed", "false");
+  }
+
+  $("#tour-start").addEventListener("click", () => showScene());
+  $("#tour-list").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-scene]");
+    if (b) showScene(b.dataset.scene);
+  });
+  $("#tour-book").addEventListener("click", () => {
+    const sc = sceneById(currentScene);
+    openBooking(sc ? sc.room : null);
+  });
+
+  // Toolbar
+  const fsEnabled = document.fullscreenEnabled || document.webkitFullscreenEnabled;
+  if (!fsEnabled) $('[data-tour="fullscreen"]').hidden = true;
+  const canMotion = "DeviceOrientationEvent" in window && window.matchMedia("(pointer: coarse)").matches;
+  if (canMotion) $('[data-tour="motion"]').hidden = false;
+
+  $(".tour-tools").addEventListener("click", async (e) => {
+    const b = e.target.closest("[data-tour]");
+    if (!b) return;
+    const act = b.dataset.tour;
+    if (act === "fullscreen") {
+      const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fsEl) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else (tourStage.requestFullscreen || tourStage.webkitRequestFullscreen).call(tourStage);
+      return;
+    }
+    if (!viewer) await showScene();
+    if (!viewer) return;
+    if (act === "zoom-in") viewer.setHfov(viewer.getHfov() - 15);
+    if (act === "zoom-out") viewer.setHfov(viewer.getHfov() + 15);
+    if (act === "rotate") {
+      const on = b.getAttribute("aria-pressed") === "true";
+      if (on) viewer.stopAutoRotate(); else viewer.startAutoRotate(-1.5);
+      b.setAttribute("aria-pressed", String(!on));
+    }
+    if (act === "motion") {
+      const on = b.getAttribute("aria-pressed") === "true";
+      if (on) { viewer.stopOrientation(); b.setAttribute("aria-pressed", "false"); return; }
+      try {
+        if (typeof DeviceOrientationEvent.requestPermission === "function") {
+          const res = await DeviceOrientationEvent.requestPermission();
+          if (res !== "granted") return;
+        }
+        viewer.startOrientation();
+        b.setAttribute("aria-pressed", "true");
+      } catch (err) { /* motion not available */ }
+    }
+  });
+
+  // Start loading when the section comes into view
+  if (tourScenes.length) {
+    new IntersectionObserver(([e], obs) => {
+      if (e.isIntersecting) { loadPannellum().catch(() => {}); obs.disconnect(); }
+    }, { rootMargin: "600px 0px" }).observe(tourSec);
+    new IntersectionObserver(([e], obs) => {
+      if (e.isIntersecting) { showScene(); obs.disconnect(); }
+    }, { threshold: 0.45 }).observe(tourStage);
+  }
+
+  // "360° tour" button inside the suite viewer
+  $("#rm-tour").addEventListener("click", () => {
+    const sc = rmRoom && firstSceneFor(rmRoom.id);
+    closeDialog(rm);
+    if (!sc) return;
+    tourSec.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+    showScene(sc.id);
+  });
 
   /* ------------------------------------------------------------------
      Lounges: tap to swap light on touch devices

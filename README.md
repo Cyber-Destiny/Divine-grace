@@ -11,6 +11,7 @@ The Vercel project `divine-grace` is connected to this repository, so every push
 - **Hero** with drifting photo columns and a quick booking bar
 - **Suites**: Standard, Executive and Presidential. Each has a hover slideshow and a full photo viewer with amenities and price
 - **Set the Mood**: an interactive viewer that shows the same room lit in different LED colours
+- **360° virtual tour**: drag (or move your phone) to look around the Standard Suite, its bathroom, the Executive Suite and the Presidential Suite bedroom, with labelled hotspots and doorways between rooms
 - **Event Hall**, with an enquiry form for weddings, conferences and other events
 - **Restaurant**, **Velvet Lounge** and **Pearl Lounge**
 - **Safety**: key-card locks, video intercom, CCTV, steel doors
@@ -48,6 +49,14 @@ Upload the whole folder to any static host:
 - **Netlify / Vercel**: drag and drop the folder, or connect this repository
 - **GitHub Pages**: Settings → Pages → deploy from the main branch, root folder
 - **cPanel / shared hosting**: upload everything into `public_html`
+
+## Adding a room or outdoor view to the 360° tour
+
+1. Get a 2:1 panorama image: from a 360 camera, a phone's panorama/photo-sphere mode, or generated from photos.
+2. Run `python3 tools/process_panorama.py path/to/panorama.jpg my-scene` (add `--partial` if the left and right edges don't join up). It writes `assets/tour/my-scene.jpg` and prints a `haov` value.
+3. Add a scene to `TOUR.scenes` in `js/config.js` with that image name and `haov`. Add `hotspots` with `go: "<scene id>"` to link doorways between scenes.
+
+The current 360° views were generated with AI from the hotel's own photos, and the site says so under the viewer.
 
 ## Adding or replacing photos
 

@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/pannellum/pannellum.css">
   <link rel="stylesheet" href="css/styles.css">
 
   <script type="application/ld+json">
@@ -63,6 +64,12 @@
     <symbol id="i-instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></g></symbol>
     <symbol id="i-facebook" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21v-7.5H16l.4-3H13.5V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4A21 21 0 0 0 14.3 4C12 4 10.5 5.4 10.5 8v2.5H8v3h2.5V21h3z"/></symbol>
     <symbol id="i-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-1.8-2.5V9.7a5.7 5.7 0 1 0 4.9 5.700V9.1a7.3 7.3 0 0 0 4.3 1.400V7.4a4.3 4.3 0 0 1-3.200-1.600z"/></symbol>
+    <symbol id="i-360" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="9.5" ry="4"/><path d="M12 3.5v4M9.5 20.5l2.5-1.5-2.5-1.5"/><path d="M12 19c5.2 0 9.5-1.8 9.5-4"/></g></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-move" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2M3 9a9 9 0 0 0 0 6M21 9a9 9 0 0 1 0 6"/></g></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
     <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 14l6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="arch" viewBox="0 0 40 48"><path d="M4 46V20a16 16 0 0 1 32 0v26" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 46V22a9 9 0 0 1 18 0v24" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/></symbol>
   </defs>
@@ -83,7 +90,7 @@
 
     <nav class="main-nav" aria-label="Main">
       <a href="#rooms">Suites</a>
-      <a href="#mood">Lighting</a>
+      <a href="#tour">360° Tour</a>
       <a href="#events">Event Hall</a>
       <a href="#dining">Restaurant</a>
       <a href="#lounges">Lounges</a>
@@ -102,6 +109,7 @@
 <div class="mobile-menu" id="mobile-menu" hidden>
   <nav aria-label="Mobile">
     <a href="#rooms">Suites</a>
+    <a href="#tour">360° Tour</a>
     <a href="#mood">Mood lighting</a>
     <a href="#events">Event Hall</a>
     <a href="#dining">Restaurant</a>
@@ -162,6 +170,7 @@
         <span><svg aria-hidden="true"><use href="#i-key"/></svg>Key-card doors</span>
         <span><svg aria-hidden="true"><use href="#i-shield"/></svg>CCTV &amp; security</span>
         <span><svg aria-hidden="true"><use href="#i-snow"/></svg>Air-conditioned</span>
+        <a class="hero-tour-link" href="#tour"><svg aria-hidden="true"><use href="#i-360"/></svg>Take the 360° tour</a>
       </div>
     </div>
   </div>
@@ -226,6 +235,49 @@
     <div class="room-grid" id="room-grid"></div>
 
     <p class="rates-note reveal">Prices are per night. Ask us about weekly stays, company rates and blocks of rooms for events.</p>
+  </div>
+</section>
+
+<!-- ======================= 360 TOUR ======================= -->
+<section class="section darker tour" id="tour">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow reveal"><span class="eyebrow-line"></span>360° virtual tour</p>
+        <h2 class="display reveal">Look around <em>before you book.</em></h2>
+      </div>
+      <p class="section-intro reveal">Drag to look around, or move your phone. Tap a labelled doorway to walk into the next room.</p>
+    </div>
+
+    <div class="tour-wrap reveal">
+      <div class="tour-stage" id="tour-stage">
+        <div class="tour-viewer" id="tour-viewer" role="application" aria-label="360 degree view. Drag or use the arrow keys to look around."></div>
+
+        <div class="tour-poster" id="tour-poster">
+          <img id="tour-poster-img" src="assets/tour/standard-suite-thumb.jpg" alt="" width="480" height="240">
+          <button class="btn btn-gold tour-start" type="button" id="tour-start"><svg aria-hidden="true"><use href="#i-360"/></svg>Start the tour</button>
+        </div>
+
+        <div class="tour-top">
+          <div class="tour-label"><span id="tour-room">Standard Suite</span><strong id="tour-title">Bedroom</strong></div>
+          <div class="tour-tools">
+            <button type="button" class="tour-btn" data-tour="zoom-in" aria-label="Zoom in"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
+            <button type="button" class="tour-btn" data-tour="zoom-out" aria-label="Zoom out"><svg aria-hidden="true"><use href="#i-minus"/></svg></button>
+            <button type="button" class="tour-btn" data-tour="rotate" aria-label="Turn auto-rotate on or off" aria-pressed="true"><svg aria-hidden="true"><use href="#i-rotate"/></svg></button>
+            <button type="button" class="tour-btn" data-tour="motion" aria-label="Look around by moving your phone" aria-pressed="false" hidden><svg aria-hidden="true"><use href="#i-move"/></svg></button>
+            <button type="button" class="tour-btn" data-tour="fullscreen" aria-label="Full screen"><svg aria-hidden="true"><use href="#i-expand"/></svg></button>
+          </div>
+        </div>
+
+        <p class="tour-hint" id="tour-hint" aria-hidden="true">Drag to look around</p>
+        <button class="btn btn-gold btn-sm tour-book" type="button" id="tour-book">Book this suite <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <p class="tour-error" id="tour-error" role="alert" hidden>The 360° view couldn't load on this device. Have a look at the photos in the gallery instead.</p>
+      </div>
+
+      <div class="tour-list" id="tour-list" role="group" aria-label="Choose a room to view"></div>
+    </div>
+
+    <p class="tour-note reveal" id="tour-note"></p>
   </div>
 </section>
 
@@ -505,6 +557,7 @@
       <a href="#rooms" data-room-link="standard">Standard Suite</a>
       <a href="#rooms" data-room-link="executive">Executive Suite</a>
       <a href="#rooms" data-room-link="presidential">Presidential Suite</a>
+      <a href="#tour">360° tour</a>
     </div>
     <div>
       <h4>Explore</h4>
@@ -549,6 +602,7 @@
       <ul class="rm-amenities" id="rm-amenities"></ul>
       <div class="rm-actions">
         <button class="btn btn-gold" type="button" id="rm-book">Book this suite <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="btn btn-ghost" type="button" id="rm-tour" hidden><svg aria-hidden="true"><use href="#i-360"/></svg>360° tour</button>
         <a class="btn btn-ghost" id="rm-wa" href="#contact" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>Ask a question</a>
       </div>
     </div>
