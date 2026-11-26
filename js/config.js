@@ -13,8 +13,8 @@ window.HOTEL = {
   phone: "+2348000000000",          // used for tap-to-call
   whatsapp: "2348000000000",        // country code + number, digits only, no "+" or spaces
   email: "info@divinegracehotel.com",
-  address: "Omu-Aran, Kwara State, Nigeria",       // add the street when ready, written exactly as on your Google Business Profile
-  mapQuery: "",                     // e.g. "Divine Grace Hotel, Ibadan". When filled in, a live Google map appears
+  address: "Ifeoluwa GRA Phase 2, beside Adekunle Babatunde Street, Abuja–Kaba Expressway, Omu-Aran, Kwara State",
+  mapQuery: "Divine's Grace & Suites, Omu-Aran, Kwara State",   // what Google Maps searches for; shows a live map
 
   checkIn: "2:00 PM",
   checkOut: "12:00 noon",
@@ -31,7 +31,7 @@ window.HOTEL = {
 };
 
 /* ---- Suites ----------------------------------------------------------------
-   price  : nightly rate in Naira (PLACEHOLDERS: set your real prices)
+   price  : nightly rate in Naira (also written in the FAQ and description in index.html)
    images : photo names from assets/img (without .webp). The first is the cover.
    -------------------------------------------------------------------------- */
 window.ROOMS = [
@@ -39,7 +39,7 @@ window.ROOMS = [
     id: "standard",
     name: "Standard Suite",
     tag: "Simple, clean and comfortable",
-    price: 35000,
+    price: 50000,
     blurb:
       "Everything you need for a good night. A king-size bed with a padded headboard, a work desk, a TV on the wall and a wardrobe with a full-length mirror. The ceiling lights change colour too, so you can keep the room bright or make it cosy.",
     highlights: ["King-size bed", "Work desk", "Colour lights"],
@@ -59,7 +59,7 @@ window.ROOMS = [
     id: "executive",
     name: "Executive Suite",
     tag: "Bedroom and sitting area in one big room",
-    price: 60000,
+    price: 70000,
     blurb:
       "More room to spread out. The bed is at one end and a leather sofa set is at the other, around a marble-top table, so you can have a visitor over or work away from the bed. The lit feature wall and the swirled stone floor make this one of our best-looking rooms.",
     highlights: ["Sitting area", "Leather sofas", "Feature wall"],
@@ -79,7 +79,7 @@ window.ROOMS = [
     id: "presidential",
     name: "Presidential Suite",
     tag: "Your own living room and a separate bedroom",
-    price: 120000,
+    price: 90000,
     blurb:
       "Our biggest suite. You walk into a private living room with two sofas, a TV wall, a mini fridge and a desk. The bedroom is through its own door, with a king-size bed, a full-height wardrobe and an armchair by the window. Good for families, long stays or anyone who wants to host in private.",
     highlights: ["Living room", "Separate bedroom", "Mini fridge"],
@@ -116,7 +116,7 @@ window.MOODS = [
     ],
   },
   {
-    space: "Velvet Lounge",
+    space: "Velvet Club",
     moods: [
       { name: "Red", color: "#ff3b5c", img: "lounge-violet" },
       { name: "Blue", color: "#4c63ff", img: "lounge-blue" },
@@ -188,7 +188,7 @@ window.GALLERY = [
   { img: "outside-night", cat: "outside", caption: "The hotel at night", wide: true },
   { img: "executive-1", cat: "suites", caption: "Presidential Suite bedroom" },
   { img: "hall-wide", cat: "events", caption: "The event hall" },
-  { img: "lounge-violet", cat: "lounges", caption: "Velvet Lounge" },
+  { img: "lounge-violet", cat: "lounges", caption: "Velvet Club" },
   { img: "studio-emerald", cat: "suites", caption: "Executive Suite with green lights" },
   { img: "dining-2", cat: "dining", caption: "The restaurant" },
   { img: "standard-blue", cat: "suites", caption: "Standard Suite" },
@@ -202,7 +202,7 @@ window.GALLERY = [
   { img: "studio-wide-ruby", cat: "suites", caption: "Executive Suite with red lights" },
   { img: "hall-side", cat: "events", caption: "Hall and upper gallery" },
   { img: "standard-ruby", cat: "suites", caption: "Standard Suite with red lights" },
-  { img: "lounge-deep-ruby", cat: "lounges", caption: "Velvet Lounge at night" },
+  { img: "lounge-deep-ruby", cat: "lounges", caption: "Velvet Club at night" },
   { img: "suite-living-door", cat: "suites", caption: "Presidential Suite, door to the bedroom" },
   { img: "door-301", cat: "security", caption: "Steel door to Room 301" },
   { img: "dining-8", cat: "dining", caption: "Restaurant and chandelier" },

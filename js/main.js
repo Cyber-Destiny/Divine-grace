@@ -58,7 +58,8 @@
   if (H.mapQuery) {
     const wrap = $("#map-wrap");
     wrap.innerHTML = `<iframe title="Map showing ${H.fullName}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps?q=${encodeURIComponent(H.mapQuery)}&output=embed"></iframe>`;
+      src="https://www.google.com/maps?q=${encodeURIComponent(H.mapQuery)}&output=embed"></iframe>
+      <a class="btn btn-dark btn-sm map-directions" data-link="map" href="${mapLink()}" target="_blank" rel="noopener">Get directions <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>`;
   }
 
   /* ------------------------------------------------------------------
