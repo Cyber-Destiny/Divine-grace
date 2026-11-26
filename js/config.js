@@ -6,7 +6,7 @@
 
 window.HOTEL = {
   name: "Divine Grace",
-  fullName: "Divine Grace Hotel",
+  fullName: "Divine Grace Hotel and Suites",   // as on the Google listing (there is another one in Ibadan)
   tagline: "Lodging · Dining · Events",
 
   /* ---- Contact details (PLACEHOLDERS: replace with the real ones) ---- */
@@ -15,7 +15,8 @@ window.HOTEL = {
   whatsapp: "2348000000000",        // country code + number, digits only, no "+" or spaces
   email: "info@divinegracehotel.com",
   address: "Ifeoluwa GRA Phase 2, beside Adekunle Babatunde Street, Abuja–Kaba Expressway, Omu-Aran, Kwara State",
-  mapQuery: "Divine's Grace & Suites, Omu-Aran, Kwara State",   // what Google Maps searches for; shows a live map
+  mapQuery: "Divine Grace Hotel and Suites - Omu-Aran",   // the Google listing name, so the map finds this hotel and not the Ibadan one
+  googleListing: "https://www.google.com/search?kgmid=/g/11_0k4b53y",   // "See our reviews on Google" link; "" hides it
 
   checkIn: "2:00 PM",
   checkOut: "12:00 noon",

@@ -46,7 +46,9 @@
     if (t === "wa") el.href = waLink(`Hello ${H.fullName}, I'd like to make an enquiry.`);
     if (t === "mail") el.href = `mailto:${H.email}`;
     if (t === "map") el.href = mapLink();
+    if (t === "google") el.href = H.googleListing || "#contact";
   });
+  if (H.googleListing) $$("[data-google]").forEach((el) => (el.hidden = false));
   $$("[data-social]").forEach((el) => {
     const url = H.social[el.dataset.social];
     if (url && url !== "#") { el.href = url; el.target = "_blank"; el.rel = "noopener"; }

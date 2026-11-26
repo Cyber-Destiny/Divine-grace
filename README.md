@@ -27,7 +27,8 @@ Everything you'll want to change is in **`js/config.js`**:
 | `phoneDisplay`, `phone` | Reception number shown on the site and used for tap-to-call |
 | `whatsapp` | WhatsApp number in international format, digits only (e.g. `2348031234567`) |
 | `email`, `address` | Contact details |
-| `mapQuery` | What Google Maps searches for; shows a live map and a "Get directions" button |
+| `mapQuery` | What Google Maps searches for; shows a live map and a "Get directions" button. Keep it as the Google listing name, "Divine Grace Hotel and Suites - Omu-Aran", so it doesn't find the Ibadan hotel |
+| `googleListing` | Link to the Google listing, shown as "See our reviews on Google" |
 | `restaurantHours` | Restaurant opening hours, e.g. `"7:00 AM – 10:00 PM daily"`. The line stays hidden while empty |
 | `social` | Instagram / Facebook / TikTok links (icons stay hidden until you add a link) |
 | `ROOMS[].price` | Nightly rate for each suite |
