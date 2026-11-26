@@ -521,7 +521,8 @@ dialog::backdrop { background: rgba(31, 29, 36, .55); backdrop-filter: blur(6px)
 .modal-close:hover { background: var(--gold); color: var(--ink); }
 .modal-close svg { font-size: 1.2rem; }
 
-.rm-grid { display: grid; grid-template-columns: 1.05fr 1fr; }
+.rm-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
+.rm-grid > * { min-width: 0; }
 .rm-media { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
 .rm-main { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 3/4; max-height: 68vh; background: var(--ivory-2); }
 .rm-main img { width: 100%; height: 100%; object-fit: cover; animation: fade .5s ease; }
@@ -676,7 +677,7 @@ dialog::backdrop { background: rgba(31, 29, 36, .55); backdrop-filter: blur(6px)
   .footer-base { flex-direction: row; padding-bottom: 72px; }
 
   .modal { width: 100vw; max-width: 100vw; max-height: 100dvh; height: 100dvh; border-radius: 0; margin: 0; border: 0; }
-  .rm-grid { grid-template-columns: 1fr; }
+  .rm-grid { grid-template-columns: minmax(0, 1fr); }
   .rm-media { padding: 0; }
   .rm-main { border-radius: 0; max-height: 62vh; aspect-ratio: 3/3.4; }
   .rm-thumbs { padding: 0 14px 4px; }
@@ -855,3 +856,4 @@ dialog::backdrop { background: rgba(31, 29, 36, .55); backdrop-filter: blur(6px)
   .faq-head { position: static; }
 }
 .map-directions { position: absolute; right: 12px; bottom: 12px; box-shadow: 0 10px 24px -8px rgba(0, 0, 0, .5); }
+.nowrap { white-space: nowrap; }
