@@ -6,7 +6,6 @@
 
   const H = window.HOTEL;
   const ROOMS = window.ROOMS;
-  const MOODS = window.MOODS;
   const GALLERY = window.GALLERY;
   const IMG = (name, small) => `assets/img/${name}${small ? "-sm" : ""}.webp`;
   const $ = (sel, root = document) => root.querySelector(sel);
@@ -40,6 +39,7 @@
     const v = H[el.dataset.bind];
     if (v) el.textContent = v;
   });
+  if (H.restaurantHours) $$("[data-hours]").forEach((el) => (el.hidden = false));
   $$("[data-link]").forEach((el) => {
     const t = el.dataset.link;
     if (t === "tel") el.href = `tel:${H.phone}`;
@@ -110,9 +110,9 @@
      Hero: drifting photo columns
      ------------------------------------------------------------------ */
   const heroSets = [
-    ["executive-1", "lounge-violet", "outside-night-tall", "studio-emerald", "dining-2"],
-    ["standard-blue", "pearl-blue", "suite-living", "hall-wide", "executive-bed"],
-    ["studio-wide-ruby", "dining-6", "lounge-deep-ruby", "standard-bed-violet", "door-301"],
+    ["outside-front", "executive-1", "hall-wide", "pearl-blue", "studio-sapphire"],
+    ["outside-fountain", "suite-living", "dining-2", "standard-blue", "outside-sign"],
+    ["outside-rotunda", "studio-wide-ruby", "hall-stage", "lounge-violet", "standard-blinds"],
   ];
   $$(".hero-col").forEach((col, i) => {
     const imgs = [...heroSets[i], ...heroSets[i]]; // doubled for a seamless loop
@@ -382,53 +382,6 @@
   $$("input, textarea", document).forEach((el) => el.addEventListener("input", () => el.classList.remove("is-invalid")));
 
   /* ------------------------------------------------------------------
-     Set the mood
-     ------------------------------------------------------------------ */
-  const moodSec = $("#mood");
-  const frame = $("#mood-frame");
-  const spacesEl = $("#mood-spaces");
-  const swatchesEl = $("#mood-swatches");
-  let space = 0, mood = 0, autoTimer = null, userTouched = false;
-
-  // Preload every mood photo into the frame (stacked for crossfade)
-  frame.innerHTML = MOODS.flatMap((s, si) => s.moods.map((m, mi) =>
-    `<img src="${IMG(m.img)}" alt="${s.space} lit in ${m.name.toLowerCase()}" data-key="${si}-${mi}" width="810" height="1080" loading="lazy">`)).join("");
-  spacesEl.innerHTML = MOODS.map((s, i) => `<button type="button" aria-pressed="${i === 0}" data-space="${i}">${s.space}</button>`).join("");
-
-  function renderSwatches() {
-    swatchesEl.innerHTML = MOODS[space].moods.map((m, i) =>
-      `<button type="button" class="swatch" style="--c:${m.color}" aria-pressed="${i === mood}" data-mood="${i}" aria-label="${m.name} light"><span>${m.name}</span></button>`).join("");
-  }
-  function applyMood() {
-    const m = MOODS[space].moods[mood];
-    $$("img", frame).forEach((img) => img.classList.toggle("is-on", img.dataset.key === `${space}-${mood}`));
-    moodSec.style.setProperty("--glow", m.color);
-    $("#mood-label").textContent = `${MOODS[space].space} · ${m.name}`;
-    $$("button", spacesEl).forEach((b, i) => b.setAttribute("aria-pressed", String(i === space)));
-    $$(".swatch", swatchesEl).forEach((b, i) => b.setAttribute("aria-pressed", String(i === mood)));
-  }
-  spacesEl.addEventListener("click", (e) => {
-    const b = e.target.closest("[data-space]"); if (!b) return;
-    userTouched = true; stopAuto();
-    space = +b.dataset.space; mood = 0; renderSwatches(); applyMood();
-  });
-  swatchesEl.addEventListener("click", (e) => {
-    const b = e.target.closest("[data-mood]"); if (!b) return;
-    userTouched = true; stopAuto();
-    mood = +b.dataset.mood; applyMood();
-  });
-  // Gentle auto-play while in view until the visitor takes over
-  function tick() {
-    mood++;
-    if (mood >= MOODS[space].moods.length) { mood = 0; space = (space + 1) % MOODS.length; renderSwatches(); }
-    applyMood();
-  }
-  function startAuto() { if (!reduceMotion && !userTouched && !autoTimer) autoTimer = setInterval(tick, 2600); }
-  function stopAuto() { clearInterval(autoTimer); autoTimer = null; }
-  new IntersectionObserver(([e]) => (e.isIntersecting ? startAuto() : stopAuto()), { threshold: 0.4 }).observe(moodSec);
-  renderSwatches(); applyMood();
-
-  /* ------------------------------------------------------------------
      360° virtual tour (Pannellum viewer, loaded only when needed)
      ------------------------------------------------------------------ */
   const TOUR = window.TOUR || { scenes: [] };
@@ -439,6 +392,32 @@
   const roomName = (id) => (ROOMS.find((r) => r.id === id) || {}).name || "";
   const firstSceneFor = (roomId) => tourScenes.find((sc) => sc.room === roomId);
   let viewer = null, pannellumLoading = null, currentScene = tourScenes.length ? tourScenes[0].id : null;
+
+  // Can this device draw the 3D view? Many budget phones and some browsers can't,
+  // so they get a flat panorama you swipe through instead of an error.
+  let glInfo;
+  function webgl() {
+    if (glInfo !== undefined) return glInfo;
+    glInfo = null;
+    try {
+      const c = document.createElement("canvas");
+      const g = c.getContext("webgl") || c.getContext("experimental-webgl");
+      if (g) {
+        glInfo = { maxTex: g.getParameter(g.MAX_TEXTURE_SIZE) || 0 };
+        const lose = g.getExtension("WEBGL_lose_context");
+        if (lose) lose.loseContext();
+      }
+    } catch (err) { glInfo = null; }
+    return glInfo;
+  }
+  const conn = navigator.connection || {};
+  const slowNet = !!conn.saveData || /2g|3g/.test(conn.effectiveType || "");
+  const lowMem = !!navigator.deviceMemory && navigator.deviceMemory <= 2;
+  // Lighter 2048px pictures for slow data, low-memory phones and weaker graphics chips
+  const lite = () => { const g = webgl(); return !g || g.maxTex < 4096 || slowNet || lowMem; };
+  const panoSrc = (sc, small) => `assets/tour/${sc.image}${small ? "-2k" : ""}.jpg`;
+  let flatMode = false;
+  window.__tourMode = null;
 
   if (!tourScenes.length) {
     tourSec.hidden = true;
@@ -479,7 +458,7 @@
     const partial = sc.haov < 360;
     return {
       type: "equirectangular",
-      panorama: `assets/tour/${sc.image}.jpg`,
+      panorama: panoSrc(sc, lite()),
       haov: sc.haov, vaov: 180,
       minYaw: partial ? -sc.haov / 2 : -180,
       maxYaw: partial ? sc.haov / 2 : 180,
@@ -504,45 +483,154 @@
   }
 
   let hintTimer = null;
+  if (window.matchMedia("(pointer: coarse)").matches) $("#tour-hint").textContent = "Swipe to look around";
   const hideHint = () => $("#tour-hint").classList.add("is-hidden");
+
+  /* ---- Flat panorama (no 3D): swipe or drag sideways through the room ---- */
+  const flat = $("#tour-flat"), flatPan = $("#tour-flat-pan"), flatImg = $("#tour-flat-img");
+  const rotateBtn = $('[data-tour="rotate"]');
+  let drift = !reduceMotion, driftDir = 1, driftPos = 0, driftRaf = 0, driftLast = 0, driftPauseUntil = 0;
+  const yawFrac = (sc, yaw) => Math.min(1, Math.max(0, ((yaw || 0) + sc.haov / 2) / sc.haov));
+
+  function driftStep(t) {
+    driftRaf = requestAnimationFrame(driftStep);
+    const dt = driftLast ? Math.min(64, t - driftLast) : 16;
+    driftLast = t;
+    if (!drift || t < driftPauseUntil || flat.hidden) return;
+    const max = flat.scrollWidth - flat.clientWidth;
+    if (max <= 0) return;
+    driftPos += driftDir * dt * 0.028;
+    if (driftPos >= max) { driftPos = max; driftDir = -1; }
+    if (driftPos <= 0) { driftPos = 0; driftDir = 1; }
+    flat.scrollLeft = driftPos;
+  }
+  function pauseDrift() {
+    driftPauseUntil = performance.now() + 6000;
+    driftPos = flat.scrollLeft;
+    hideHint();
+  }
+  ["pointerdown", "touchstart", "wheel"].forEach((ev) => flat.addEventListener(ev, pauseDrift, { passive: true }));
+  flat.addEventListener("scroll", () => { if (performance.now() < driftPauseUntil) driftPos = flat.scrollLeft; }, { passive: true });
+
+  // Mouse drag (touch screens scroll natively)
+  let dragX = null, dragStart = 0;
+  flat.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "mouse" || e.target.closest(".tour-hs-go")) return;
+    dragX = e.clientX; dragStart = flat.scrollLeft;
+    flat.classList.add("is-dragging");
+    flat.setPointerCapture(e.pointerId);
+  });
+  flat.addEventListener("pointermove", (e) => {
+    if (dragX === null) return;
+    flat.scrollLeft = dragStart - (e.clientX - dragX);
+    driftPos = flat.scrollLeft; driftPauseUntil = performance.now() + 6000;
+  });
+  const endDrag = () => { dragX = null; flat.classList.remove("is-dragging"); };
+  flat.addEventListener("pointerup", endDrag);
+  flat.addEventListener("pointercancel", endDrag);
+  flat.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    pauseDrift();
+    flat.scrollBy({ left: (e.key === "ArrowLeft" ? -1 : 1) * flat.clientWidth * 0.4, behavior: reduceMotion ? "auto" : "smooth" });
+  });
+
+  function showFlat() {
+    const sc = sceneById(currentScene);
+    if (!sc) return;
+    flatMode = true;
+    window.__tourMode = "flat";
+    tourStage.classList.add("is-flat");
+    $("#tour-viewer").hidden = true;
+    flat.hidden = false;
+    flat.tabIndex = 0;
+    flat.setAttribute("aria-label", `${roomName(sc.room)}, ${sc.title}. Swipe or use the arrow keys to look around.`);
+    flatPan.querySelectorAll(".tour-hs").forEach((n) => n.remove());
+    (sc.hotspots || []).filter((h) => h.go).forEach((h) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "tour-hs tour-hs-go tour-flat-hs";
+      b.setAttribute("aria-label", h.text);
+      b.innerHTML = `<span class="tour-hs-dot"></span>`;
+      b.style.left = `${yawFrac(sc, h.yaw) * 100}%`;
+      b.style.top = `${((90 - (h.pitch || 0)) / 180) * 100}%`;
+      b.addEventListener("click", () => showScene(h.go));
+      flatPan.appendChild(b);
+    });
+    const place = () => {
+      flat.scrollLeft = yawFrac(sc, sc.yaw) * flatPan.offsetWidth - flat.clientWidth / 2;
+      driftPos = flat.scrollLeft; driftDir = 1;
+      driftPauseUntil = performance.now() + 1500;
+    };
+    const src = panoSrc(sc, true);
+    flatImg.onerror = () => { $("#tour-error").hidden = false; };
+    if (flatImg.getAttribute("src") !== src) {
+      flatImg.onload = place;
+      flatImg.src = src;
+    } else place();
+    rotateBtn.setAttribute("aria-pressed", String(drift));
+    if (!driftRaf) driftRaf = requestAnimationFrame(driftStep);
+    clearTimeout(hintTimer);
+    $("#tour-hint").classList.remove("is-hidden");
+    hintTimer = setTimeout(hideHint, 7000);
+  }
+
+  // Switch to the flat view if the 3D view fails or takes far too long
+  let loadTimer = null;
+  function toFlat() {
+    clearTimeout(loadTimer);
+    if (flatMode) return;
+    setTimeout(() => {
+      if (viewer) { try { viewer.destroy(); } catch (err) { /* already gone */ } viewer = null; window.__tourViewer = null; }
+      showFlat();
+    }, 0);
+  }
+  const armLoadTimer = () => { clearTimeout(loadTimer); loadTimer = setTimeout(toFlat, 25000); };
 
   async function showScene(id) {
     if (id && sceneById(id)) currentScene = id;
     updateTourUI();
     $("#tour-poster").classList.add("is-hidden");
     $("#tour-error").hidden = true;
+    if (flatMode || !webgl()) { showFlat(); return; }
     if (viewer) {
-      if (viewer.getScene() !== currentScene) viewer.loadScene(currentScene);
+      if (viewer.getScene() !== currentScene) { viewer.loadScene(currentScene); armLoadTimer(); }
       return;
     }
-    try { await loadPannellum(); } catch (err) { $("#tour-error").hidden = false; return; }
-    if (viewer) { if (viewer.getScene() !== currentScene) viewer.loadScene(currentScene); return; }
+    try { await loadPannellum(); } catch (err) { showFlat(); return; }
+    if (flatMode) { showFlat(); return; }
+    if (viewer) { if (viewer.getScene() !== currentScene) { viewer.loadScene(currentScene); armLoadTimer(); } return; }
     const scenes = {};
     tourScenes.forEach((sc) => (scenes[sc.id] = sceneConfig(sc)));
-    viewer = window.pannellum.viewer("tour-viewer", {
-      default: {
-        firstScene: currentScene,
-        sceneFadeDuration: 900,
-        autoLoad: true,
-        showControls: false,
-        mouseZoom: "fullscreenonly",
-        keyboardZoom: true,
-        autoRotate: reduceMotion ? 0 : -1.5,
-        autoRotateInactivityDelay: reduceMotion ? -1 : 6000,
-        friction: 0.15,
-        backgroundColor: [0.04, 0.045, 0.08],
-        strings: { loadingLabel: "Loading the room…" },
-      },
-      scenes,
-    });
+    try {
+      viewer = window.pannellum.viewer("tour-viewer", {
+        default: {
+          firstScene: currentScene,
+          sceneFadeDuration: 900,
+          autoLoad: true,
+          showControls: false,
+          mouseZoom: "fullscreenonly",
+          keyboardZoom: true,
+          autoRotate: reduceMotion ? 0 : -1.5,
+          autoRotateInactivityDelay: reduceMotion ? -1 : 6000,
+          friction: 0.15,
+          backgroundColor: [0.04, 0.045, 0.08],
+          strings: { loadingLabel: "Loading the room…" },
+        },
+        scenes,
+      });
+    } catch (err) { viewer = null; showFlat(); return; }
     window.__tourViewer = viewer;
+    window.__tourMode = "3d";
+    armLoadTimer();
+    viewer.on("load", () => clearTimeout(loadTimer));
     viewer.on("scenechange", (sid) => { currentScene = sid; updateTourUI(); });
-    viewer.on("error", () => { $("#tour-error").hidden = false; });
+    viewer.on("error", toFlat);
     viewer.on("mousedown", hideHint);
     viewer.on("touchstart", hideHint);
     clearTimeout(hintTimer);
     hintTimer = setTimeout(hideHint, 7000);
-    if (reduceMotion) $('[data-tour="rotate"]').setAttribute("aria-pressed", "false");
+    if (reduceMotion) rotateBtn.setAttribute("aria-pressed", "false");
   }
 
   $("#tour-start").addEventListener("click", () => showScene());
@@ -571,7 +659,15 @@
       else (tourStage.requestFullscreen || tourStage.webkitRequestFullscreen).call(tourStage);
       return;
     }
-    if (!viewer) await showScene();
+    if (!viewer && !flatMode) await showScene();
+    if (flatMode) {
+      if (act === "rotate") {
+        drift = !drift;
+        driftPauseUntil = 0; driftPos = flat.scrollLeft;
+        b.setAttribute("aria-pressed", String(drift));
+      }
+      return;
+    }
     if (!viewer) return;
     if (act === "zoom-in") viewer.setHfov(viewer.getHfov() - 15);
     if (act === "zoom-out") viewer.setHfov(viewer.getHfov() + 15);
@@ -597,7 +693,7 @@
   // Start loading when the section comes into view
   if (tourScenes.length) {
     new IntersectionObserver(([e], obs) => {
-      if (e.isIntersecting) { loadPannellum().catch(() => {}); obs.disconnect(); }
+      if (e.isIntersecting) { if (webgl()) loadPannellum().catch(() => {}); obs.disconnect(); }
     }, { rootMargin: "600px 0px" }).observe(tourSec);
     new IntersectionObserver(([e], obs) => {
       if (e.isIntersecting) { showScene(); obs.disconnect(); }

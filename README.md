@@ -1,4 +1,4 @@
-# Divine Grace Hotel: website
+# Divine Grace (Lodging · Dining · Events): website
 
 A fast, static hotel website (plain HTML, CSS and JavaScript, no build step) built around the hotel's own photos.
 
@@ -9,13 +9,13 @@ The Vercel project `divine-grace` is connected to this repository, so every push
 ## What's on the site
 
 - **Hero** with drifting photo columns and a quick booking bar
+- **Outside**: daytime photos of the compound, rotunda and fountain
 - **Suites**: Standard, Executive and Presidential. Each has a hover slideshow and a full photo viewer with amenities and price
-- **Set the Mood**: an interactive viewer that shows the same room lit in different LED colours
-- **360° virtual tour**: drag (or move your phone) to look around the Standard Suite, its bathroom, the Executive Suite and the Presidential Suite bedroom, with labelled hotspots and doorways between rooms
+- **360° virtual tour**: drag (or move your phone) to look around the Standard Suite, its bathroom, the Executive Suite and the Presidential Suite bedroom, with a gold arrow to walk between rooms. Phones that can't show 3D (common on budget Android phones) get a swipeable panorama instead, and slow connections get lighter 2048px pictures
 - **Event Hall**, with an enquiry form for weddings, conferences and other events
-- **Restaurant**, **Velvet Lounge** and **Pearl Lounge**
+- **Restaurant**, **Velvet Club** and **Pearl Lounge**
 - **Safety**: key-card locks, video intercom, CCTV, steel doors
-- **Our people**, a filterable **Gallery** with a lightbox, and **Contact**
+- **Our team** with its departments, a filterable **Gallery** with a lightbox, and **Contact**
 - Bookings, event enquiries and messages are sent to the hotel on **WhatsApp** (or by email), already filled in with dates, suite, guests and an estimated total. No backend is needed.
 
 ## Edit the hotel's details
@@ -27,13 +27,14 @@ Everything you'll want to change is in **`js/config.js`**:
 | `phoneDisplay`, `phone` | Reception number shown on the site and used for tap-to-call |
 | `whatsapp` | WhatsApp number in international format, digits only (e.g. `2348031234567`) |
 | `email`, `address` | Contact details |
-| `mapQuery` | Fill in (e.g. `"Divine Grace Hotel, Ibadan"`) to show a live Google map |
+| `mapQuery` | What Google Maps searches for; shows a live map and a "Get directions" button |
+| `restaurantHours` | Restaurant opening hours, e.g. `"7:00 AM – 10:00 PM daily"`. The line stays hidden while empty |
 | `social` | Instagram / Facebook / TikTok links (icons stay hidden until you add a link) |
 | `ROOMS[].price` | Nightly rate for each suite |
 | `ROOMS[]` | Suite names, descriptions, amenities and which photos to show |
 | `GALLERY` | Photos and captions in the gallery |
 
-> The phone, WhatsApp, email, address and suite prices are **placeholders**. Replace them before going live.
+> The phone, WhatsApp and email are still **placeholders**. Replace them so bookings reach the hotel.
 
 ## Preview locally
 
@@ -64,4 +65,6 @@ Put the new originals in a folder, add them to the `MAP` in `tools/optimize_imag
 python3 tools/optimize_images.py path/to/originals
 ```
 
-This writes a full-size and a thumbnail WebP version of each photo into `assets/img/`.
+This writes a full-size and a thumbnail WebP version of each photo into `assets/img/`. Add a slug to `NEUTRAL` to correct blue/purple LED light to white, to `DAYLIGHT` for outdoor shots against the sun, or to `FACES` to brighten faces in group photos (see `tools/photo_fix.py`). Pass slugs after the folder to redo only those photos.
+
+The share image (`assets/og-image.jpg`) is built from the outside photo with `python3 tools/make_og_image.py`.

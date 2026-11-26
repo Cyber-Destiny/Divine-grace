@@ -9,7 +9,7 @@ Usage:
         use this to cut out a section that repeats. The result is a partial view.
 
 Writes assets/tour/<slug>.jpg (max 4096 px wide, the largest phones can show in 3D),
-assets/tour/<slug>-thumb.jpg, and prints the "haov" value to put in js/config.js.
+assets/tour/<slug>-2k.jpg (lighter copy), assets/tour/<slug>-thumb.jpg, and prints the "haov" value to put in js/config.js.
 """
 import argparse
 import os
@@ -66,6 +66,10 @@ def main():
     img = img.resize((round(img.width * scale), round(img.height * scale)), Image.LANCZOS)
     os.makedirs(OUT, exist_ok=True)
     img.save(os.path.join(OUT, f"{args.slug}.jpg"), quality=84, optimize=True, progressive=True)
+
+    # lighter copy for slow connections, weaker phones and the no-3D fallback
+    small = img.resize((2048, round(img.height * 2048 / img.width)), Image.LANCZOS)
+    small.save(os.path.join(OUT, f"{args.slug}-2k.jpg"), quality=80, optimize=True, progressive=True)
 
     cx, cy = img.width // 2, img.height // 2
     tw = min(img.width, img.height)

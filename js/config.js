@@ -7,6 +7,7 @@
 window.HOTEL = {
   name: "Divine Grace",
   fullName: "Divine Grace Hotel",
+  tagline: "Lodging · Dining · Events",
 
   /* ---- Contact details (PLACEHOLDERS: replace with the real ones) ---- */
   phoneDisplay: "+234 800 000 0000",
@@ -19,6 +20,7 @@ window.HOTEL = {
   checkIn: "2:00 PM",
   checkOut: "12:00 noon",
   frontDesk: "open 24 hours",
+  restaurantHours: "",              // e.g. "7:00 AM – 10:00 PM daily". Leave "" to hide the line
 
   currency: "₦",
 
@@ -41,8 +43,8 @@ window.ROOMS = [
     tag: "Simple, clean and comfortable",
     price: 50000,
     blurb:
-      "Everything you need for a good night. A king-size bed with a padded headboard, a work desk, a TV on the wall and a wardrobe with a full-length mirror. The ceiling lights change colour too, so you can keep the room bright or make it cosy.",
-    highlights: ["King-size bed", "Work desk", "Colour lights"],
+      "Everything you need for a good night. A king-size bed with a padded headboard, a work desk, a TV on the wall and a wardrobe with a full-length mirror. The ceiling lights can also change colour if you want a softer mood at night.",
+    highlights: ["King-size bed", "Work desk", "Air-conditioning"],
     amenities: [
       "King-size bed",
       "Air-conditioning",
@@ -53,7 +55,7 @@ window.ROOMS = [
       "Shower cabin",
       "Key-card door and video intercom",
     ],
-    images: ["standard-blue", "standard-ruby", "standard-bed-violet", "standard-desk", "wardrobe", "bath-shower", "standard-blinds"],
+    images: ["standard-blue", "standard-bed-violet", "standard-desk", "wardrobe", "bath-shower", "standard-blinds"],
   },
   {
     id: "executive",
@@ -73,7 +75,7 @@ window.ROOMS = [
       "Air-conditioning",
       "Key-card door and video intercom",
     ],
-    images: ["studio-emerald", "studio-sapphire", "studio-wide-emerald", "studio-wide-ruby", "studio-blue", "studio-ruby", "bath-shower"],
+    images: ["studio-sapphire", "studio-wide-ruby", "studio-blue", "bath-shower"],
   },
   {
     id: "presidential",
@@ -95,32 +97,7 @@ window.ROOMS = [
       "Colour-changing ceiling lights",
       "Key-card door and video intercom",
     ],
-    images: ["suite-living", "executive-1", "suite-living-door", "executive-bed", "suite-living-2", "executive-2", "suite-entrance", "bath-shower"],
-  },
-];
-
-/* ---- Mood lighting viewer: the same room in different colours ---------- */
-window.MOODS = [
-  {
-    space: "Executive Suite",
-    moods: [
-      { name: "Blue", color: "#4c63ff", img: "studio-sapphire" },
-      { name: "Green", color: "#1fd1a5", img: "studio-emerald" },
-    ],
-  },
-  {
-    space: "Standard Suite",
-    moods: [
-      { name: "Blue", color: "#4c63ff", img: "standard-blue" },
-      { name: "Red", color: "#ff3b5c", img: "standard-ruby" },
-    ],
-  },
-  {
-    space: "Velvet Club",
-    moods: [
-      { name: "Red", color: "#ff3b5c", img: "lounge-violet" },
-      { name: "Blue", color: "#4c63ff", img: "lounge-blue" },
-    ],
+    images: ["suite-living", "executive-1", "suite-living-door", "executive-bed", "suite-living-2", "suite-entrance", "bath-shower"],
   },
 ];
 
@@ -185,38 +162,38 @@ window.TOUR = {
    wide: true shows a landscape photo across two columns
    -------------------------------------------------------------------------- */
 window.GALLERY = [
-  { img: "outside-night", cat: "outside", caption: "The hotel at night", wide: true },
+  { img: "outside-compound", cat: "outside", caption: "The hotel and courtyard in Omu-Aran", wide: true },
   { img: "executive-1", cat: "suites", caption: "Presidential Suite bedroom" },
   { img: "hall-wide", cat: "events", caption: "The event hall" },
-  { img: "lounge-violet", cat: "lounges", caption: "Velvet Club" },
-  { img: "studio-emerald", cat: "suites", caption: "Executive Suite with green lights" },
-  { img: "dining-2", cat: "dining", caption: "The restaurant" },
-  { img: "standard-blue", cat: "suites", caption: "Standard Suite" },
+  { img: "outside-front", cat: "outside", caption: "The rotunda from the road" },
+  { img: "studio-sapphire", cat: "suites", caption: "Executive Suite" },
   { img: "pearl-blue", cat: "lounges", caption: "Pearl Lounge" },
-  { img: "outside-night-2", cat: "outside", caption: "The rotunda and courtyard fountain", wide: true },
-  { img: "suite-living", cat: "suites", caption: "Presidential Suite living room" },
+  { img: "dining-2", cat: "dining", caption: "The restaurant" },
+  { img: "outside-fountain", cat: "outside", caption: "The rotunda and fountain" },
+  { img: "standard-blue", cat: "suites", caption: "Standard Suite" },
+  { img: "lounge-violet", cat: "lounges", caption: "Velvet Club" },
   { img: "hall-stage", cat: "events", caption: "The stage" },
+  { img: "suite-living", cat: "suites", caption: "Presidential Suite living room" },
+  { img: "outside-courtyard", cat: "outside", caption: "The courtyard fountain", wide: true },
+  { img: "outside-rotunda", cat: "outside", caption: "Main entrance" },
   { img: "sec-card", cat: "security", caption: "Key-card lock" },
-  { img: "executive-bed", cat: "suites", caption: "Presidential Suite bed" },
-  { img: "dining-6", cat: "dining", caption: "Tables by the windows" },
-  { img: "studio-wide-ruby", cat: "suites", caption: "Executive Suite with red lights" },
+  { img: "studio-wide-ruby", cat: "suites", caption: "Executive Suite sitting area" },
+  { img: "dining-1", cat: "dining", caption: "Restaurant tables and drinks chiller" },
   { img: "hall-side", cat: "events", caption: "Hall and upper gallery" },
-  { img: "standard-ruby", cat: "suites", caption: "Standard Suite with red lights" },
-  { img: "lounge-deep-ruby", cat: "lounges", caption: "Velvet Club at night" },
-  { img: "suite-living-door", cat: "suites", caption: "Presidential Suite, door to the bedroom" },
-  { img: "door-301", cat: "security", caption: "Steel door to Room 301" },
-  { img: "dining-8", cat: "dining", caption: "Restaurant and chandelier" },
-  { img: "bath-shower", cat: "suites", caption: "Shower cabin" },
-  { img: "pearl-green", cat: "lounges", caption: "Pearl Lounge with green lights" },
-  { img: "hall-gallery-view", cat: "events", caption: "View from the upper gallery" },
-  { img: "studio-sapphire", cat: "suites", caption: "Executive Suite feature wall" },
-  { img: "sec-intercom", cat: "security", caption: "Video intercom inside a suite" },
-  { img: "standard-bed-violet", cat: "suites", caption: "Standard Suite bed" },
-  { img: "dining-1", cat: "dining", caption: "Restaurant tables" },
-  { img: "executive-2", cat: "suites", caption: "Presidential Suite wardrobe" },
+  { img: "outside-side", cat: "outside", caption: "The suites block and front gate" },
+  { img: "executive-bed", cat: "suites", caption: "Presidential Suite bed" },
   { img: "pearl-violet", cat: "lounges", caption: "Pearl Lounge seating" },
+  { img: "door-301", cat: "security", caption: "Steel door to Room 301" },
+  { img: "suite-living-door", cat: "suites", caption: "Presidential Suite, door to the bedroom" },
+  { img: "outside-sign", cat: "outside", caption: "Divine's Grace Hotel & Suites" },
+  { img: "hall-gallery-view", cat: "events", caption: "View from the upper gallery" },
+  { img: "standard-bed-violet", cat: "suites", caption: "Standard Suite bed" },
+  { img: "lounge-blue", cat: "lounges", caption: "Velvet Club booths" },
+  { img: "sec-intercom", cat: "security", caption: "Video intercom inside a suite" },
+  { img: "bath-shower", cat: "suites", caption: "Shower cabin" },
+  { img: "studio-blue", cat: "suites", caption: "Executive Suite bed and sofas" },
   { img: "hall-wide-2", cat: "events", caption: "Lighting rig and marble floor" },
-  { img: "sec-cctv", cat: "security", caption: "CCTV camera" },
   { img: "suite-entrance", cat: "suites", caption: "Presidential Suite living room" },
+  { img: "sec-cctv", cat: "security", caption: "CCTV camera" },
   { img: "standard-desk", cat: "suites", caption: "Standard Suite desk and TV" },
 ];
